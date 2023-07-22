@@ -6,9 +6,9 @@ services:
       context: ./app/backend
       dockerfile: docker/docker_files/Dockerfile
     restart: unless-stopped
+    container_name: app
     command: >
-      bash -c "django-admin startproject course .
-      && python manage.py makemigrations
+      bash -c "python manage.py makemigrations
       && python manage.py migrate
       && python manage.py runserver 0.0.0.0:8000"
     volumes:
