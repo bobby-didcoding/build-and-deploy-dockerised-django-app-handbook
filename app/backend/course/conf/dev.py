@@ -26,6 +26,7 @@ from .common import (
     USE_TZ,
     DEFAULT_AUTO_FIELD,
     SUSPEND_SIGNALS,
+    AUTH_USER_MODEL,
 )
 
 # --------------------------------------------------------------
@@ -53,6 +54,7 @@ USE_I18N = USE_I18N
 USE_TZ = USE_TZ
 DEFAULT_AUTO_FIELD = DEFAULT_AUTO_FIELD
 SUSPEND_SIGNALS = SUSPEND_SIGNALS
+AUTH_USER_MODEL = AUTH_USER_MODEL
 
 PRODUCTION = 0
 DEBUG = 1
