@@ -26,7 +26,7 @@ By the end of this section, you'll be equipped with the knowledge and skills to 
 
 # <span style="color:orange">Code changes</span>
 
-You can find all code changes [here](https://github.com/bobby-didcoding/build-and-deploy-dockerised-django-app-handbook/pull/6/files).
+You can find all code changes [here](https://github.com/bobby-didcoding/build-and-deploy-dockerised-django-app-handbook/pull/5/files).
 
 
 ***
