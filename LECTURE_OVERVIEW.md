@@ -1,43 +1,43 @@
 # <span style="color:orange">Lecture overview</span>
 
-In this lecture, we will wire up essential packages that play a crucial role in making our project function seamlessly. These packages have been carefully chosen to enhance the capabilities and performance of our Django project. We will be integrating the following packages:
+In this lecture, we'll embark on the journey of building a robust Django application by creating essential models for various components. Our project will consist of four apps: ecommerce, core, tasks, and users. Each app serves a distinct purpose, contributing to the overall functionality of the web application.
 
-- black==23.7.0
-- celery==5.3.1
-- django-celery-beat==2.5.0
-- django-celery-results==2.5.1
-- django-ckeditor==6.6.1
-- django-enumfield==3.1
-- django-extensions==3.2.3
-- django-redis==5.3.0
-- flake8==6.0.0
-- flower==2.0.0
-- Pillow==10.0.0
-- psycopg2-binary
-- python-dotenv==1.0.0
-- redis==4.6.0
-- requests==2.31.0
-- six==1.16.0
-- stripe==5.5.0
-- django-debug-toolbar==4.1.0
-- s3transfer==0.6.1
-- sentry-sdk==1.28.1
-- gunicorn==21.1.0
-- boto3==1.28.5
-- botocore==1.31.5
-- django-storages==1.13.2
+Core App Models:
 
-By integrating these packages, you'll unlock a wide range of functionalities, including automated code formatting (black), task queue management (Celery), and real-time monitoring of Celery tasks (django-celery-beat and django-celery-results). Additionally, you'll have access to an advanced rich text editor (django-ckeditor) and ENUM support (django-enumfield).
+We begin by setting up the core app, which will serve as the foundation for our project. Here, we'll define essential models to capture crucial information. These models include:
 
-Other packages like django-extensions, django-redis, flake8, and Pillow will further streamline your development process, enhance caching, ensure code quality, and handle images effectively. Integrating Stripe will enable easy payment processing, while django-debug-toolbar helps in debugging and optimizing performance.
+- Blogs: Store blog posts with relevant fields like title, content, author, and publication date.
 
-To boost scalability and reliability, we'll leverage AWS S3 storage using django-storages, with boto3 and botocore providing the necessary integration with AWS services. For error tracking, we'll implement Sentry with sentry-sdk.
+- Contact Form Information: Capture user inquiries with details like name, email, and message.
 
-Through this hands-on integration of packages, your Django project will be enriched with powerful features, setting the stage for a highly functional and efficient web application ready for production deployment.
+- Testimonials: Record client testimonials, including their name and feedback.
+
+Ecommerce App Models:
+
+Next, we'll focus on the ecommerce app, which handles product-related data and transactions. The ecommerce models include:
+
+- Products: Store product details such as name, description, price, and inventory status.
+
+- Invoices: Keep track of customer invoices, including associated products and payment details.
+
+- Stripe Sessions: Record information about payment sessions, seamlessly integrating with Stripe for secure payments.
+
+Users App and CustomUser Model:
+
+To implement user authentication and extend the built-in user model, we'll work with the users app. Here, we'll define a custom user model (CustomUser) that allows us to add custom fields and functionalities. This ensures flexibility and scalability for user-related features in our application.
+
+Tasks App with Celery Implementation (Later in the Course):
+While we won't delve into the implementation just yet, we'll prepare the groundwork by creating the tasks app. This app will be integrated with Celery later in the course to manage background tasks and asynchronous processing effectively.
+
+Utilizing Abstract Classes and Django Extensions:
+
+To promote code reusability and maintain consistency, we'll create abstract classes and leverage Django extensions. Abstract classes will define common fields and behaviors shared across multiple models, reducing redundancy. Additionally, we'll utilize Django extensions to implement fields like 'status,' 'slug,' and 'created' efficiently across all models, streamlining development.
+
+Throughout this section, you'll gain valuable insights into designing and implementing Django models for various app components, ensuring a well-structured and scalable project. By combining abstract classes, Django extensions, and custom user models, we'll create a dynamic web application with extensive capabilities, ready to meet the demands of the real-world production environment.
 
 # <span style="color:orange">Code changes</span>
 
-You can find all code changes [here](https://github.com/bobby-didcoding/build-and-deploy-dockerised-django-app-handbook/pull/2/files).
+You can find all code changes [here](https://github.com/bobby-didcoding/build-and-deploy-dockerised-django-app-handbook/pull/3/files).
 
 
 ***
