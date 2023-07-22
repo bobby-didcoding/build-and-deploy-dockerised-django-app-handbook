@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: ./app/backend
+      dockerfile: docker/docker_files/Dockerfile
+    restart: unless-stopped
+    command: >
+      bash -c "django-admin startproject course .
+      && python manage.py makemigrations
+      && python manage.py migrate
+      && python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - ./app/backend:/code
+    ports:
+      - 8000:8000
+    env_file:
+      - .env
