@@ -8,5 +8,8 @@ Throughout the video, we methodically walk you through the essential changes tha
 
 # <span style="color:orange">Code changes</span>
 
+You can find all code changes [here](https://github.com/bobby-didcoding/build-and-deploy-dockerised-django-app-handbook/pull/1/files).
+
+
 ***
 ***
