@@ -24,7 +24,7 @@ By the end of this section, you'll have a deep understanding of how to leverage 
 
 # <span style="color:orange">Code changes</span>
 
-You can find all code changes [here](https://github.com/bobby-didcoding/build-and-deploy-dockerised-django-app-handbook/pull/5/files).
+You can find all code changes [here](https://github.com/bobby-didcoding/build-and-deploy-dockerised-django-app-handbook/pull/8/files).
 
 
 ***
