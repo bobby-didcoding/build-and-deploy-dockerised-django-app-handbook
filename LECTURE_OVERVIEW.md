@@ -1,28 +1,30 @@
 # <span style="color:orange">Lecture overview</span>
 
-In this lecture, we'll harness the power of Django's built-in admin UI by creating admin classes for each of the models we defined in the previous section. The Django admin is a powerful tool that allows us to perform CRUD (Create, Read, Update, Delete) operations on our database entries directly through a user-friendly browser interface.
+In this lecture, we'll explore the powerful capabilities of Django signals and learn how to effectively use post_save and pre_save signals to handle the linking of models with OneToOne and ForeignKey relationships. Signals allow us to respond to certain events in the database, enabling us to execute specific logic when conditions are met.
 
-Creating Admin Classes:
+Understanding Post_Save Signals:
 
-For every model we defined in the previous section, we'll create corresponding admin classes. These classes will determine how the model's data is presented and edited in the admin interface. By customizing the admin classes, we can tailor the admin UI to best suit our application's needs.
+We'll start by diving into post_save signals, which are triggered after a model's instance is saved to the database. We'll learn how to leverage these signals to handle automatic linking of models, ensuring consistency and accuracy in data representation. For instance, we can automatically create a user cart once the user's account is activated.
 
-Exploring the Django Admin UI:
+Handling Logic with Pre_Save Signals:
 
-Before diving into customizations, we'll first explore the default Django admin UI. To access it, we'll use a Django command: 'python manage.py createsuperuser.' This command allows us to create a superuser, granting administrative privileges to access and manage the admin interface.
+Next, we'll explore pre_save signals, which are triggered just before a model's instance is saved to the database. We'll discover how to use pre_save signals to check submitted data against existing records and enforce business rules. For example, we can run code to verify that certain criteria are met before activating a user's account and possibly send an email to notify them of the activation.
 
-Registering Models with Admin Classes:
+Linking Models with OneToOne and ForeignKey Fields:
 
-Once we've created the admin classes, we'll register each model with its corresponding admin class. This step ensures that our customizations are applied to the Django admin UI, enabling us to efficiently manage the data in our application.
+We'll focus on linking models with OneToOne and ForeignKey relationships through signals. This technique streamlines the process of associating related data without requiring manual intervention, enhancing the efficiency and reliability of our application.
 
-Leveraging CRUD Operations:
+Signal Decorators and Registration:
+To effectively use signals, we'll explore the concept of signal decorators and how to register them properly. This step is essential for establishing a clear and organized approach to handling various events in our Django application.
 
-With our admin classes in place, we'll take advantage of Django's admin UI to perform CRUD operations. We'll be able to add new entries, view existing data, update information, and delete records – all through an intuitive and user-friendly interface.
+Writing Custom Signal Handlers:
+In this section, we'll create custom signal handlers tailored to our specific use cases. We'll develop logic that executes when certain conditions are met, allowing us to enforce rules, perform additional actions, or validate data before saving to the database.
 
-By the end of this section, you'll have a comprehensive understanding of how to wire up admin classes to leverage Django's built-in admin UI effectively. You'll be able to navigate, manage, and manipulate your application's data with ease, thanks to the powerful capabilities of Django's admin interface. With your custom admin classes in place, the admin UI will become a crucial tool for efficiently managing your web application's database and facilitating seamless interactions with your data.
+By the end of this section, you'll have a deep understanding of how to leverage post_save and pre_save signals to handle model linking and implement custom logic efficiently. You'll be equipped with the knowledge to manage complex interactions between models seamlessly and maintain data integrity while automating essential tasks, such as user activation, email notifications, and more. Signals serve as a powerful tool to streamline processes and ensure smooth interactions within your Django project.
 
 # <span style="color:orange">Code changes</span>
 
-You can find all code changes [here](https://github.com/bobby-didcoding/build-and-deploy-dockerised-django-app-handbook/pull/4/files).
+You can find all code changes [here](https://github.com/bobby-didcoding/build-and-deploy-dockerised-django-app-handbook/pull/8/files).
 
 
 ***
