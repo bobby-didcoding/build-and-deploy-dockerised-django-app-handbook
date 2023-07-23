@@ -2,10 +2,16 @@
 # App imports
 # --------------------------------------------------------------
 
-from ecommerce.signals.customer import create_customer
-from ecommerce.signals.price import create_price
-from ecommerce.signals.product import create_product
+from ecommerce.signals.customer import create_customer, update_customer
+from ecommerce.signals.product import manage_product
+from ecommerce.signals.price import manage_price
 from ecommerce.signals.invoice import create_invoice
 
 
-__all__ = [create_customer, create_price, create_product, create_invoice]
+__all__ = [
+    create_customer,
+    update_customer,
+    manage_product,
+    manage_price,
+    create_invoice,
+]
