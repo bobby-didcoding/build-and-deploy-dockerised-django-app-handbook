@@ -36,7 +36,9 @@ def create_ecommerce_objects(sender, instance, **kwargs):
             else:
                 protocol = "http://"
             context = {
-                "invoice_url": instance.hosted_invoice_url,
+                "user_id": instance.id,
+                "subject": 'Course - Welcome!',
+                "template": "users/emails/welcome-email.html",
                 "domain": f"{protocol}{current_site}",
                 "support_email": settings.EMAIL_HOST_USER,
             }
