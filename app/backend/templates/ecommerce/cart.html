@@ -84,31 +84,16 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {% for object in request.user.customer_user.cart_customer.products.all %}
                         <tr>
-                            
-                            <td class="product-thumbnail"><a href="single-product.html"><img src="{% static 'images/logo.png' %}" alt="Digital Product"></a></td>
-                            <td class="product-title"><a href="single-product.html">Wireless PS Handler</a></td>
-                            <td class="product-price" data-title="Price">124.00</td>
+                            <td class="product-thumbnail"><a href="{{object.get_absolute_url}}"><img src="{{object.image.url}}" height="50" alt="{{object.title}} image"></a></td>
+                            <td class="product-title"><a href="{{object.get_absolute_url}}">{{object.title}}</a></td>
+                            <td class="product-price" data-title="Price">£{{object.price.amount}}</td>
                             <td class="product-quantity" data-title="Qty">1</td>
-                            <td class="product-subtotal" data-title="Subtotal">275.00</td>
-                            <td class="product-remove"><a href="#" style="color:red">X</a></td>
+                            <td class="product-subtotal" data-title="Subtotal">£{{object.price.amount}}</td>
+                            <td class="product-remove"><a href="javacript:void(0)" onclick="manageCart('/manage-cart/{{object.id}}/remove/')" style="color:red">X</a></td>
                         </tr>
-                        <tr>
-                            <td class="product-thumbnail"><a href="single-product-2.html"><img src="{% static 'images/logo.png' %}" alt="Digital Product"></a></td>
-                            <td class="product-title"><a href="single-product-2.html">Gradient Light Keyboard</a></td>
-                            <td class="product-price" data-title="Price">124.00</td>
-                            <td class="product-quantity" data-title="Qty">1</td>
-                            <td class="product-subtotal" data-title="Subtotal">275.00</td>
-                            <td class="product-remove"><a href="#" style="color:red">X</a></td>
-                        </tr>
-                        <tr>
-                            <td class="product-thumbnail"><a href="single-product-3.html"><img src="{% static 'images/logo.png' %}" alt="Digital Product"></a></td>
-                            <td class="product-title"><a href="single-product-3.html">HD CC Camera</a></td>
-                            <td class="product-price" data-title="Price">124.00</td>
-                            <td class="product-quantity" data-title="Qty">1</td>
-                            <td class="product-subtotal" data-title="Subtotal">275.00</td>
-                            <td class="product-remove"><a href="#" style="color:red">X</a></td>
-                        </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>
@@ -117,21 +102,14 @@
                   <h5 class="title mb--20">Order Summary</h5>
                   <table class="table summery-table mb--30">
                       <tbody>
-                          <tr class="order-subtotal">
-                              <td>Subtotal</td>
-                              <td>$117.00</td>
-                          </tr>
-                          <tr class="order-tax">
-                              <td>State Tax</td>
-                              <td>$8.00</td>
-                          </tr>
+                          
                           <tr class="order-total">
                               <td>Total</td>
-                              <td class="order-total-amount">$125.00</td>
+                              <td class="order-total-amount">£{{request.user.customer_user.cart_customer.total}}</td>
                           </tr>
                       </tbody>
                   </table>
-                  <a href="checkout.html" class="btn btnPrimary">Process to Checkout</a>
+                  <a href="javascript:void(0)" onclick="createSession('/session-create/')" class="btn btnPrimary">Go to Checkout</a>
                 </div>
             </div>
         </div>
