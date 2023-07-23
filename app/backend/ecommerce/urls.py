@@ -4,6 +4,11 @@
 from django.urls import path
 
 # --------------------------------------------------------------
+# Project imports
+# --------------------------------------------------------------
+from apis.stripe import stripe_webhooks
+
+# --------------------------------------------------------------
 # App imports
 # --------------------------------------------------------------
 from ecommerce import views
@@ -25,4 +30,10 @@ urlpatterns = [
     ),
     path("products/", views.ProductsView.as_view(), name="products"),
     path("product/<str:slug>/", views.ProductView.as_view(), name="product"),
+    path(
+        "manage-cart/<uuid:product_id>/<str:action>/",
+        views.manage_cart,
+        name="manage-cart",
+    ),
+    path("stripe-webhooks/", stripe_webhooks, name="stripe-webhooks"),
 ]

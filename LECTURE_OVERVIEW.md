@@ -1,36 +1,38 @@
 # <span style="color:orange">Lecture overview</span>
 
-In this section of the course, we will delve into the exciting world of integrating the Stripe API with our Django application. Building on the Django app we have already developed, we are ready to take it to the next level by seamlessly connecting our platform with the powerful features provided by Stripe's payment processing capabilities.
+Welcome to the next phase of our course, where we embark on the journey of integrating Stripe webhooks into our Django application, enabling real-time communication between Stripe and our platform. Webhooks play a crucial role in keeping our application up-to-date with events and actions occurring within the Stripe ecosystem. In this section, we will focus on wiring up Stripe webhooks locally, ensuring that our application responds promptly to important events and updates from Stripe.
 
-Throughout this section, we will be utilizing the Stripe SDK (Software Development Kit) to build an efficient and robust connector that enables smooth data synchronization between our application and the Stripe payment gateway. This integration will pave the way for seamless payment processing, allowing our users to perform secure transactions on our platform with ease.
+Understanding Webhooks: 
 
-The primary objective of this section is to create well-structured and reusable endpoint classes that can be seamlessly incorporated across our project. By doing so, we ensure that any interactions with the Stripe API are centralized and optimized, promoting maintainability and reducing redundancy within our codebase.
+We'll start by gaining a comprehensive understanding of what webhooks are and how they function. You'll learn about the significance of using webhooks in modern web applications, particularly when dealing with real-time updates and event-driven architectures.
 
-Introduction to the Stripe API: 
+Setting up Stripe Webhooks: 
 
-We will begin by understanding the fundamentals of the Stripe API and its capabilities. We'll explore the various features that Stripe offers, such as processing payments, handling refunds, managing customer data, and more.
+We'll guide you through the process of configuring Stripe webhooks within your Django application. This will involve creating a specific endpoint dedicated to handling incoming webhook events from Stripe.
 
-Setting Up the Stripe SDK: 
+Writing Webhook Listeners: 
 
-Before diving into the implementation, we need to configure the Stripe SDK within our Django app. We'll cover the necessary steps to set up the SDK properly and authenticate with the Stripe API securely.
+To process the incoming webhook events effectively, we will build webhook listeners in Python. These listeners will interpret the events received from Stripe and execute the necessary actions in our application based on the event type.
 
-Building Endpoint Classes: 
+Securing Webhook Endpoints: 
 
-One of the core aspects of this section is to create endpoint classes responsible for communicating with the Stripe API. We'll design these classes in a modular and reusable manner, allowing us to easily extend functionality and accommodate future updates to the Stripe API.
+Webhook security is of paramount importance to prevent unauthorized access and ensure data integrity. We'll explore best practices for securing our webhook endpoint and validating incoming webhook payloads.
 
-Invoice Creation and E-commerce Signal: 
+Introduction to Stripe-CLI and Docker: 
 
-We'll focus on integrating the Stripe invoice creation process with our existing e-commerce functionality. By doing so, we can automatically generate invoices in Stripe whenever a user completes a purchase on our platform.
+As we gear up for deploying our application to production, we will also learn about the Stripe Command-Line Interface (CLI) and how it simplifies webhook testing. Additionally, we'll integrate a new container in our existing Docker setup, incorporating the stripe-cli image to facilitate local webhook testing and debugging.
 
-Webhooks Setup (Upcoming Section): 
+Building a Docker Container with Stripe-CLI: 
 
-As we progress, we'll be discussing the importance of webhooks and their role in keeping our application synchronized with events on Stripe. We'll touch upon what webhooks are, how they work, and prepare for their implementation in the next section.
+We will provide a step-by-step guide on creating a new Docker container specifically designed for running the stripe-cli tool. This container will streamline the process of testing and monitoring webhook events during the development phase.
 
-By the end of this section, you will have a comprehensive understanding of how to seamlessly integrate the Stripe API into your Django application. You'll be equipped with reusable endpoint classes and a well-organized structure to handle Stripe-related operations efficiently. Moreover, you'll be ready to take on the next section, where we will explore webhooks and complete the integration loop, enabling our application to stay updated with real-time events from Stripe. Get ready to elevate your application's capabilities and offer a smooth payment experience to your users!
+By the end of this section, you'll have a fully functional Stripe webhooks integration within your Django application. You'll understand the significance of real-time updates and how to handle webhook events securely. Moreover, you'll be equipped with the knowledge to set up a Docker container with the stripe-cli image, streamlining the testing process and facilitating smooth local webhook integration.
+
+As we progress further in the course, you'll be well-prepared to deploy your application to a production environment with confidence, knowing that your Stripe webhooks integration is robust, reliable, and capable of delivering an exceptional user experience. Let's dive in and unlock the potential of real-time communication between your Django app and Stripe!
 
 # <span style="color:orange">Code changes</span>
 
-You can find all code changes [here](https://github.com/bobby-didcoding/build-and-deploy-dockerised-django-app-handbook/pull/17/files).
+You can find all code changes [here](https://github.com/bobby-didcoding/build-and-deploy-dockerised-django-app-handbook/pull/18/files).
 
 
 ***

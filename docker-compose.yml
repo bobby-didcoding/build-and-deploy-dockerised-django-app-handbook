@@ -7,6 +7,8 @@ services:
       dockerfile: docker/docker_files/Dockerfile
     restart: unless-stopped
     container_name: app
+    networks:
+      - inside-network
     command: >
       bash -c "python manage.py makemigrations
       && python manage.py migrate
@@ -18,3 +20,17 @@ services:
       - 8000:8000
     env_file:
       - .env
+
+  stripe-cli:
+    image: stripe/stripe-cli
+    container_name: stripe-cli
+    networks:
+      - inside-network
+    env_file:
+      - .env
+    command: "listen --api-key ${STRIPE_SECRET} --device-name 'local' --forward-to app:8000/stripe-webhooks/"
+
+
+networks:
+    inside-network:
+        driver: bridge
