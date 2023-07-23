@@ -41,6 +41,7 @@ THIRD_PARTY_APPS = [
     "ckeditor",
     "django_extensions",
     "debug_toolbar",
+    "django_celery_beat",
 ]
 
 APPS = ["core", "ecommerce", "tasks", "users"]
@@ -184,4 +185,21 @@ STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET")
 STRIPE_PUBLISHABLE = os.environ.get("STRIPE_PUBLISHABLE")
 # --------------------------------------------------------------
 # END STRIPE SETTINGS
+# --------------------------------------------------------------
+
+# --------------------------------------------------------------
+# CELERY SETTINGS
+# --------------------------------------------------------------
+CELERY_BROKER_URL = os.environ.get("CELERY_BROKER", "redis://redis:6379")
+CELERY_RESULT_BACKEND = os.environ.get("CELERY_BACKEND", "redis://redis:6379")
+if CELERY_RESULT_BACKEND == "django-db":
+    INSTALLED_APPS += [
+        "django_celery_results",
+    ]
+CELERY_ACCEPT_CONTENT = ["application/json"]
+CELERY_RESULT_SERIALIZER = "json"
+CELERY_TASK_SERIALIZER = "json"
+CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
+# --------------------------------------------------------------
+# END CELERY SETTINGS
 # --------------------------------------------------------------

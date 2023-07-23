@@ -30,6 +30,60 @@ services:
       - .env
     command: "listen --api-key ${STRIPE_SECRET} --device-name 'local' --forward-to app:8000/stripe-webhooks/"
 
+  redis:
+    image: redis:6-alpine
+    networks:
+      - inside-network
+    ports:
+      - "6379:6379"
+
+  worker:
+    restart: always
+    build:
+      context: ./app/backend
+      dockerfile: docker/docker_files/Dockerfile
+    networks:
+      - inside-network
+    command: celery -A course worker --loglevel=info --logfile=logs/celery.log
+    volumes:
+      - ./app/backend:/code
+    env_file:
+      - .env
+    depends_on:
+      - redis
+      - app
+
+  beat:
+    build:
+      context: ./app/backend
+      dockerfile: docker/docker_files/Dockerfile
+    networks:
+      - inside-network
+    command: celery -A course beat -l info
+    volumes:
+      - ./app/backend:/code
+    env_file:
+      - .env
+    depends_on:
+      - redis
+      - app
+
+
+  flower:
+    build:
+      context: ./app/backend
+      dockerfile: docker/docker_files/Dockerfile
+    networks:
+      - inside-network
+    command: celery -A course flower  --broker=${CELERY_BROKER}
+    ports:
+      - 5555:5555
+    env_file:
+      - .env
+    depends_on:
+      - app
+      - redis
+      - worker
 
 networks:
     inside-network:
