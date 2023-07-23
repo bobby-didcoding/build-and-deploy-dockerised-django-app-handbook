@@ -41,6 +41,9 @@ handler503 = "course.views.handler503"
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("__debug__/", include("debug_toolbar.urls")),
+    path("", include("core.urls", namespace="core")),
+    path("", include("ecommerce.urls", namespace="ecommerce")),
+    path("", include("users.urls", namespace="users")),
     path(
         "reset_password/",
         auth_views.PasswordResetView.as_view(
