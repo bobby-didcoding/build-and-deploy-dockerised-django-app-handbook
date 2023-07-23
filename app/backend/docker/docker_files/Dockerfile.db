@@ -1,0 +1,1 @@
+FROM kartoza/postgis:14-3.1
