@@ -1,28 +1,27 @@
 # --------------------------------------------------------------
 # App imports
 # --------------------------------------------------------------
-from ecommerce.tests.models import(
+from ecommerce.tests.models import (
     PriceTestCase,
     ProductTestCase,
     CustomerTestCase,
     CartTestCase,
     SessionItemTestCase,
-    SessionTestCase
+    SessionTestCase,
 )
 
-from ecommerce.tests.views import(
+from ecommerce.tests.views import (
     CartViewTestCase,
     ManageCartViewTestCase,
     SessionCreateViewTestCase,
     SessionSuccessViewTestCase,
     SessionCancelViewTestCase,
     ProductsViewTestCase,
-    ProductViewTestCase
+    ProductViewTestCase,
 )
 
 
 __all__ = [
-
     PriceTestCase,
     ProductTestCase,
     CustomerTestCase,
@@ -35,5 +34,5 @@ __all__ = [
     SessionSuccessViewTestCase,
     SessionCancelViewTestCase,
     ProductViewTestCase,
-    ProductsViewTestCase
+    ProductsViewTestCase,
 ]

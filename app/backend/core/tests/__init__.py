@@ -9,13 +9,10 @@ from core.tests.models import (
     ContactTestCase,
     NewsLetterTestCase,
     SkillTestCase,
-    TestimonialTestCase
+    TestimonialTestCase,
 )
 
-from core.tests.forms import (
-    ContactFormTestCase,
-    GenericNewsLetterFormTestCase
-)
+from core.tests.forms import ContactFormTestCase, GenericNewsLetterFormTestCase
 
 from core.tests.views import (
     HomeViewTestCase,
@@ -25,7 +22,6 @@ from core.tests.views import (
     PolicyViewTestCase,
     PortfolioViewTestCase,
     PortfoliosViewTestCase,
-
 )
 
 __all__ = [
@@ -45,5 +41,5 @@ __all__ = [
     PoliciesViewTestCase,
     PolicyViewTestCase,
     PortfolioViewTestCase,
-    PortfoliosViewTestCase
+    PortfoliosViewTestCase,
 ]

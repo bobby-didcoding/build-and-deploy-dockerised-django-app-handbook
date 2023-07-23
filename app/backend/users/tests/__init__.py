@@ -3,17 +3,18 @@
 # --------------------------------------------------------------
 from users.tests.base import BaseTestCustomUser
 from users.tests.models import CustomUserTestCase
+
 # from users.tests.signals import CustomUserSignalTestCase
 from users.tests.forms import (
     LoginFormTestCase,
     SignupFormTestCase,
-    RequestPasswordFormTestCase
+    RequestPasswordFormTestCase,
 )
 from users.tests.views import (
     SignupTestCase,
     LoginTestCase,
     ForgottenPasswordTestCase,
-    LogoutViewTestCase
+    LogoutViewTestCase,
 )
 
 
@@ -27,5 +28,5 @@ __all__ = [
     SignupTestCase,
     LoginTestCase,
     ForgottenPasswordTestCase,
-    LogoutViewTestCase
+    LogoutViewTestCase,
 ]
