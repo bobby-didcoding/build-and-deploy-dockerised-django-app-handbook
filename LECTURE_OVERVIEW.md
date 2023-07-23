@@ -1,43 +1,28 @@
 # <span style="color:orange">Lecture overview</span>
 
-In this lecture, we'll embark on the journey of building a robust Django application by creating essential models for various components. Our project will consist of four apps: ecommerce, core, tasks, and users. Each app serves a distinct purpose, contributing to the overall functionality of the web application.
+In this lecture, we'll harness the power of Django's built-in admin UI by creating admin classes for each of the models we defined in the previous section. The Django admin is a powerful tool that allows us to perform CRUD (Create, Read, Update, Delete) operations on our database entries directly through a user-friendly browser interface.
 
-Core App Models:
+Creating Admin Classes:
 
-We begin by setting up the core app, which will serve as the foundation for our project. Here, we'll define essential models to capture crucial information. These models include:
+For every model we defined in the previous section, we'll create corresponding admin classes. These classes will determine how the model's data is presented and edited in the admin interface. By customizing the admin classes, we can tailor the admin UI to best suit our application's needs.
 
-- Blogs: Store blog posts with relevant fields like title, content, author, and publication date.
+Exploring the Django Admin UI:
 
-- Contact Form Information: Capture user inquiries with details like name, email, and message.
+Before diving into customizations, we'll first explore the default Django admin UI. To access it, we'll use a Django command: 'python manage.py createsuperuser.' This command allows us to create a superuser, granting administrative privileges to access and manage the admin interface.
 
-- Testimonials: Record client testimonials, including their name and feedback.
+Registering Models with Admin Classes:
 
-Ecommerce App Models:
+Once we've created the admin classes, we'll register each model with its corresponding admin class. This step ensures that our customizations are applied to the Django admin UI, enabling us to efficiently manage the data in our application.
 
-Next, we'll focus on the ecommerce app, which handles product-related data and transactions. The ecommerce models include:
+Leveraging CRUD Operations:
 
-- Products: Store product details such as name, description, price, and inventory status.
+With our admin classes in place, we'll take advantage of Django's admin UI to perform CRUD operations. We'll be able to add new entries, view existing data, update information, and delete records – all through an intuitive and user-friendly interface.
 
-- Invoices: Keep track of customer invoices, including associated products and payment details.
-
-- Stripe Sessions: Record information about payment sessions, seamlessly integrating with Stripe for secure payments.
-
-Users App and CustomUser Model:
-
-To implement user authentication and extend the built-in user model, we'll work with the users app. Here, we'll define a custom user model (CustomUser) that allows us to add custom fields and functionalities. This ensures flexibility and scalability for user-related features in our application.
-
-Tasks App with Celery Implementation (Later in the Course):
-While we won't delve into the implementation just yet, we'll prepare the groundwork by creating the tasks app. This app will be integrated with Celery later in the course to manage background tasks and asynchronous processing effectively.
-
-Utilizing Abstract Classes and Django Extensions:
-
-To promote code reusability and maintain consistency, we'll create abstract classes and leverage Django extensions. Abstract classes will define common fields and behaviors shared across multiple models, reducing redundancy. Additionally, we'll utilize Django extensions to implement fields like 'status,' 'slug,' and 'created' efficiently across all models, streamlining development.
-
-Throughout this section, you'll gain valuable insights into designing and implementing Django models for various app components, ensuring a well-structured and scalable project. By combining abstract classes, Django extensions, and custom user models, we'll create a dynamic web application with extensive capabilities, ready to meet the demands of the real-world production environment.
+By the end of this section, you'll have a comprehensive understanding of how to wire up admin classes to leverage Django's built-in admin UI effectively. You'll be able to navigate, manage, and manipulate your application's data with ease, thanks to the powerful capabilities of Django's admin interface. With your custom admin classes in place, the admin UI will become a crucial tool for efficiently managing your web application's database and facilitating seamless interactions with your data.
 
 # <span style="color:orange">Code changes</span>
 
-You can find all code changes [here](https://github.com/bobby-didcoding/build-and-deploy-dockerised-django-app-handbook/pull/3/files).
+You can find all code changes [here](https://github.com/bobby-didcoding/build-and-deploy-dockerised-django-app-handbook/pull/4/files).
 
 
 ***
