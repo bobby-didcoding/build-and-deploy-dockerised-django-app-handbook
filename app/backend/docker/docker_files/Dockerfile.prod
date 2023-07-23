@@ -1,0 +1,16 @@
+FROM python:3.10
+
+### 3. Set environment variables
+ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE 1
+
+
+RUN mkdir /code
+COPY . /code/
+WORKDIR /code
+
+RUN set -e; \
+    /usr/local/bin/python -m pip install --upgrade pip ;\
+    python -m pip install --default-timeout=100 -r /code/requirements/prod.txt ;
+
+EXPOSE 8000
