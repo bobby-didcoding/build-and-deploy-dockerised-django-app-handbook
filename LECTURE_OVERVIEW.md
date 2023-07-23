@@ -1,34 +1,30 @@
 # <span style="color:orange">Lecture overview</span>
 
-Welcome to this pivotal section of our course, where we'll embark on an exciting journey of upgrading our database to PostgreSQL, a robust and powerful relational database management system. PostgreSQL offers a wide array of advanced features and performance optimizations, making it an ideal choice for scaling and managing data-intensive applications. In addition to the PostgreSQL upgrade, we'll also implement pgAdmin, a popular administration and development platform, in our Docker Compose setup, enabling seamless management and visualization of the PostgreSQL database.
+In this advanced section of our course, we'll focus on building robust CI/CD (Continuous Integration/Continuous Deployment) pipelines using Docker-Compose for staging and production environments. Additionally, we'll replace Flower with Nginx as the proxy server to efficiently manage incoming traffic. This CI/CD setup will enable automated testing, seamless deployment, and improved scalability for your Django application. Furthermore, we'll integrate these Docker-Compose files into GitHub Actions to automate the CI/CD process and ensure smooth and reliable application delivery.
 
-Introduction to PostgreSQL: 
+Introduction to Docker-Compose CI/CD: 
 
-We'll begin by understanding the advantages of using PostgreSQL over other database management systems. You'll learn about its advanced capabilities, including support for complex data types, ACID compliance, and extensibility.
+We'll start by understanding the benefits of utilizing Docker-Compose for CI/CD pipelines. You'll learn how Docker-Compose streamlines the deployment process, simplifies environment configuration, and ensures consistency across different environments.
 
-Setting Up PostgreSQL:
+Building the Staging Docker-Compose File: 
 
-We'll guide you through the installation and configuration of PostgreSQL to serve as the new database backend for our Django application. This includes creating the appropriate database and user roles to facilitate a smooth migration.
+We'll create a Docker-Compose file specifically tailored for the staging environment. This will include setting up containers for the Django app, PostgreSQL database, Redis caching, and Nginx as the proxy server to efficiently handle incoming requests.
 
-Updating Django Settings: 
+Implementing Production Docker-Compose File: 
 
-As we switch to PostgreSQL, certain Django settings need to be updated to reflect the changes in the database backend. We'll modify the settings to use the PostgreSQL database engine, configure the database connection, and handle other PostgreSQL-specific settings.
+We'll create a separate Docker-Compose file for the production environment. This file will focus on fine-tuning the application's configuration for optimal performance, security, and scalability. Nginx will continue to serve as the proxy server for handling incoming traffic.
 
-Implementing pgAdmin for Database Management: 
+Configuring Nginx for Load Balancing: 
 
-In addition to upgrading to PostgreSQL, we'll introduce pgAdmin, a comprehensive administration and development platform, to our Docker Compose setup. We'll configure a pgAdmin container, providing a user-friendly web interface to interact with the PostgreSQL database seamlessly.
+To ensure high availability and improved performance, we'll explore how to configure Nginx for load balancing across multiple instances of the Django app. You'll learn how to set up multiple containers and use Nginx to distribute incoming traffic efficiently.
 
-Upgrading Docker Compose: 
+By the end of this section, you'll have successfully implemented Docker-Compose CI/CD files for both staging and production environments, utilizing Nginx as the proxy server for efficient traffic handling. The integration with GitHub Actions will automate the testing and deployment processes, enabling you to deliver a seamless and reliable application experience to your users.
 
-To accommodate the PostgreSQL and pgAdmin upgrade, we'll adjust our Docker Compose setup. This will involve configuring a new PostgreSQL container and integrating pgAdmin, providing a powerful and centralized database management solution.
-
-By the end of this section, you'll have successfully upgraded your database to PostgreSQL, unlocking the potential of a more robust and scalable database management system. Your Django application will be equipped with PostgreSQL's advanced features and performance optimizations, ensuring a seamless and efficient data management experience. With the addition of pgAdmin, you'll have a powerful administration tool at your disposal, enabling you to visualize and manage your PostgreSQL database with ease.
-
-Upgrading to PostgreSQL and implementing pgAdmin are crucial steps in ensuring the long-term success of your application, and this section will guide you through the migration process and database management with confidence. Let's dive into the world of PostgreSQL and elevate your database capabilities to new heights!
+Docker-Compose CI/CD is a fundamental skill for modern web development, allowing you to streamline your development and deployment workflows effectively. Let's dive into the world of CI/CD with Docker-Compose and ensure that your Django application is delivered with confidence and efficiency.
 
 # <span style="color:orange">Code changes</span>
 
-You can find all code changes [here](https://github.com/bobby-didcoding/build-and-deploy-dockerised-django-app-handbook/pull/24/files).
+You can find all code changes [here](https://github.com/bobby-didcoding/build-and-deploy-dockerised-django-app-handbook/pull/25/files).
 
 
 ***

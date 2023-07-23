@@ -1,0 +1,97 @@
+version: '3'
+
+services:
+    
+    db:
+        build:
+            context: ./app/backend
+            dockerfile: docker/docker_files/Dockerfile.db
+            cache_from:
+                - "${PROD_DB_IMAGE}"
+        image: "${PROD_DB_IMAGE}"
+        restart: unless-stopped
+        env_file:
+            - ./.env
+        environment:
+            - POSTGRES_USER=${DB_USER}
+            - POSTGRES_PASSWORD=${DB_PASSWORD}
+            - POSTGRES_DB=${DB_NAME}
+            - POSTGRES_PORT= ${DB_PORT}
+
+    app:
+        restart: unless-stopped
+        build:
+            context: ./app/backend
+            dockerfile: docker/docker_files/Dockerfile.prod
+            cache_from:
+                - "${PROD_APP_IMAGE}"
+        image: "${PROD_APP_IMAGE}"
+
+        command: gunicorn --env DJANGO_SETTINGS_MODULE=course.conf.prod course.wsgi.prod:application --bind 0.0.0.0:8000
+
+        expose:
+            - 8000
+        env_file:
+            - ./.env
+        depends_on:
+            - db
+    
+    redis:
+        build:
+            context: ./app/backend
+            dockerfile: docker/docker_files/Dockerfile.redis
+            cache_from:
+                - "${PROD_REDIS_IMAGE}"
+        image: "${PROD_REDIS_IMAGE}"
+        restart: unless-stopped
+        expose:
+            - 6379
+        ports:
+            - "6379:6379"
+            
+    celery:
+        restart: unless-stopped
+        build:
+            context: ./app/backend
+            dockerfile: docker/docker_files/Dockerfile.prod
+            cache_from:
+                - "${PROD_CELERY_IMAGE}"
+        image: "${PROD_CELERY_IMAGE}"
+        command: celery -A course worker --loglevel=info --logfile=logs/celery.log
+        env_file:
+            - ./.env
+        depends_on:
+            - db
+            - redis
+            - app
+
+
+    beat:
+        restart: unless-stopped
+        build:
+            context: ./app/backend
+            dockerfile: docker/docker_files/Dockerfile.prod
+            cache_from:
+                - "${PROD_BEAT_IMAGE}"
+        image: "${PROD_BEAT_IMAGE}"
+        command: celery -A course beat -l info
+        env_file:
+            - ./.env
+        depends_on:
+            - db
+            - redis
+            - app
+
+    nginx:
+        build:
+            context: ./app/backend
+            dockerfile: docker/docker_files/Dockerfile.nginx
+            cache_from:
+                - "${PROD_NGINX_IMAGE}"
+        restart: unless-stopped
+        image: "${PROD_NGINX_IMAGE}"
+        ports:
+            - "80:80"
+            - "443:443"
+        depends_on:
+            - app
