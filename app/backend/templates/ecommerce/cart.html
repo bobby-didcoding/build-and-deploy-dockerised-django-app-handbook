@@ -1,0 +1,152 @@
+{% extends 'base/base.html' %}
+{% load static cache %}
+
+<!-- ================================
+    START SEO BLOCKS
+================================= -->
+{% block page_title %}
+{% endblock %}
+
+{% block keywords %}
+{% endblock %}
+
+{% block description %}
+{% endblock %}
+
+{% block schema %}
+{% endblock %}
+<!-- ================================
+    END SEO BLOCKS AREA
+================================= -->
+
+<!-- ================================
+    START HEADER SECTION
+================================= -->
+{% block extend_header %}
+{% endblock %}
+<!-- ================================
+    END HEADER SECTION
+================================= -->
+
+<!-- ================================
+    START MODAL SECTION
+================================= -->
+{% block modal %}
+{% endblock %}
+<!-- ================================
+    END MODAL SECTION
+================================= -->
+
+<!-- ================================
+    START FOOTER SECTION
+================================= -->
+
+{% block extend_footer %}
+{% endblock %}
+
+<!-- ================================
+    END FOOTER SECTION
+================================= -->
+
+<!-- ================================
+    START CONTENT SECTION
+================================= -->
+{% block content %}
+<section>
+    <div class="innerPageBannerCol">
+      <div class="container">
+        <div class="row g-4 g-md-3  align-items-center">
+          <div class="col-md-6">
+            <div class="bannerContent">
+              <h1 class="xlTitle pb-md-3">Cart</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+
+    <!-- Start Cart Area  -->
+    <div class="sectionSpaceSm lightBg">
+        <div class="container">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="product-thumbnail">Product</th>
+                            <th scope="col" class="product-title"></th>
+                            <th scope="col" class="product-price">Price</th>
+                            <th scope="col" class="product-quantity">Quantity</th>
+                            <th scope="col" class="product-subtotal">Subtotal</th>
+                            <th scope="col" class="product-remove"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            
+                            <td class="product-thumbnail"><a href="single-product.html"><img src="{% static 'images/logo.png' %}" alt="Digital Product"></a></td>
+                            <td class="product-title"><a href="single-product.html">Wireless PS Handler</a></td>
+                            <td class="product-price" data-title="Price">124.00</td>
+                            <td class="product-quantity" data-title="Qty">1</td>
+                            <td class="product-subtotal" data-title="Subtotal">275.00</td>
+                            <td class="product-remove"><a href="#" style="color:red">X</a></td>
+                        </tr>
+                        <tr>
+                            <td class="product-thumbnail"><a href="single-product-2.html"><img src="{% static 'images/logo.png' %}" alt="Digital Product"></a></td>
+                            <td class="product-title"><a href="single-product-2.html">Gradient Light Keyboard</a></td>
+                            <td class="product-price" data-title="Price">124.00</td>
+                            <td class="product-quantity" data-title="Qty">1</td>
+                            <td class="product-subtotal" data-title="Subtotal">275.00</td>
+                            <td class="product-remove"><a href="#" style="color:red">X</a></td>
+                        </tr>
+                        <tr>
+                            <td class="product-thumbnail"><a href="single-product-3.html"><img src="{% static 'images/logo.png' %}" alt="Digital Product"></a></td>
+                            <td class="product-title"><a href="single-product-3.html">HD CC Camera</a></td>
+                            <td class="product-price" data-title="Price">124.00</td>
+                            <td class="product-quantity" data-title="Qty">1</td>
+                            <td class="product-subtotal" data-title="Subtotal">275.00</td>
+                            <td class="product-remove"><a href="#" style="color:red">X</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-xl-5 col-lg-7 offset-xl-7 offset-lg-5">
+                  <h5 class="title mb--20">Order Summary</h5>
+                  <table class="table summery-table mb--30">
+                      <tbody>
+                          <tr class="order-subtotal">
+                              <td>Subtotal</td>
+                              <td>$117.00</td>
+                          </tr>
+                          <tr class="order-tax">
+                              <td>State Tax</td>
+                              <td>$8.00</td>
+                          </tr>
+                          <tr class="order-total">
+                              <td>Total</td>
+                              <td class="order-total-amount">$125.00</td>
+                          </tr>
+                      </tbody>
+                  </table>
+                  <a href="checkout.html" class="btn btnPrimary">Process to Checkout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Cart Area  -->
+
+  </section>
+
+{% endblock %}
+<!-- ================================
+    END CONTENT SECTION
+================================= -->
+
+
+
+
+
+

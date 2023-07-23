@@ -1,0 +1,97 @@
+{% extends 'base/base.html' %}
+{% load static cache %}
+
+<!-- ================================
+    START SEO BLOCKS
+================================= -->
+{% block page_title %}
+{% endblock %}
+
+{% block keywords %}
+{% endblock %}
+
+{% block description %}
+{% endblock %}
+
+{% block schema %}
+{% endblock %}
+<!-- ================================
+    END SEO BLOCKS AREA
+================================= -->
+
+<!-- ================================
+    START HEADER SECTION
+================================= -->
+{% block extend_header %}
+{% endblock %}
+<!-- ================================
+    END HEADER SECTION
+================================= -->
+
+<!-- ================================
+    START MODAL SECTION
+================================= -->
+{% block modal %}
+{% endblock %}
+<!-- ================================
+    END MODAL SECTION
+================================= -->
+
+<!-- ================================
+    START FOOTER SECTION
+================================= -->
+
+{% block extend_footer %}
+{% endblock %}
+
+<!-- ================================
+    END FOOTER SECTION
+================================= -->
+
+<!-- ================================
+    START CONTENT SECTION
+================================= -->
+{% block content %}
+<section>
+    <div class="innerPageBannerCol">
+      <div class="container">
+        <div class="row g-4 g-md-3  align-items-center">
+          <div class="col-md-6">
+            <div class="bannerContent">
+              <h1 class="xlTitle pb-md-3">Contact us below</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="lightBg">
+      <div class="container">
+          <form id="contactForm">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Your name..">
+
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="Your email..">
+
+              <label for="subject">Message</label>
+              <textarea id="message" name="message" placeholder="Write something.." rows="6"></textarea>
+
+              <input class='btn btnPrimary' type="submit" value="Submit">
+          </form>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}
+<!-- ================================
+    END CONTENT SECTION
+================================= -->
+
+
+
+
+
+

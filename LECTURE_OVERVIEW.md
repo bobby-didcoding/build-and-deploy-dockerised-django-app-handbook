@@ -1,41 +1,37 @@
 # <span style="color:orange">Lecture overview</span>
 
-Welcome to the "Wiring Django Views to URLs" course section! In this final module before we embark on creating captivating HTML templates, we will focus on the essential task of connecting our Django views to specific URLs. The URL configuration plays a vital role in determining how users interact with your web application and access different functionalities. By mastering the art of URL routing and view mapping, you will establish a solid foundation for building a robust and user-friendly web application. Upon completing this section, you will be well-equipped to navigate users seamlessly through your application and ensure a smooth user experience.
+Welcome to the "Creating HTML Templates with Django's Template Tags" course section! In this exciting module, we will embark on a journey to design captivating and dynamic HTML templates using Django's vast library of helpful template tags. Django's templating engine provides a rich set of features that allow you to create reusable, maintainable, and responsive templates. From using {% block %} to extend base templates, employing {% include %} to incorporate reusable components, to implementing {% if %} to add conditional logic, you will harness the true potential of Django's template tags to craft visually appealing and interactive user interfaces.
 
-Understanding URL Configuration in Django:
+Understanding Django's Templating Engine:
 
-Familiarize yourself with Django's URL dispatcher and its role in directing incoming requests to appropriate views.
-Learn about URL patterns, regex matching, and named URL patterns.
+Gain a comprehensive understanding of Django's templating engine and its role in rendering dynamic HTML content.
+Familiarize yourself with template tags, template filters, and template inheritance.
 
-Defining URL Patterns for Views:
+Leveraging the Power of {% block %}:
 
-Create URL patterns for each of your Django views to establish a clear and organized URL structure.
+Learn how to use {% block %} to create base templates and define regions for content customization.
+Extend base templates to create consistent layouts while allowing flexibility for specific pages.
 
-Managing URL Namespaces:
+Reusing Code with {% include %}:
 
-Explore URL namespaces to avoid naming conflicts and enhance code maintainability.
-Organize URL patterns into namespaces for different sections of your web application.
+Explore {% include %} to efficiently reuse common HTML components across multiple templates.
+Create reusable template snippets for headers, footers, navigation bars, and other shared elements.
 
-Using Django's Include Functionality:
+Adding Logic with {% if %} and {% else %}:
 
-Learn how to utilize the include function to break down your URL configuration into modular and reusable components.
-Incorporate app-specific URL configurations into the main project URL configuration.
+Implement {% if %} and {% else %} to introduce conditional logic within your templates.
+Display content conditionally based on specific variables or user attributes.
 
-Mapping Views to URLs:
+Optimizing Template Performance:
 
-Connect your Django views to corresponding URL patterns to ensure proper handling of user requests.
-Implement view functions and class-based views to handle various URL paths.
+Learn best practices to optimize template rendering performance.
+Avoid common pitfalls and bottlenecks that may impact template efficiency.
 
-URL Parameter Passing and Query Parameters:
-
-Explore methods for passing parameters in URLs and extracting them in view functions.
-Implement query parameters to enable flexible filtering and sorting options in your web application.
-
-By the end of this course section, you will have successfully wired up all your Django views to URLs, creating a clear and logical structure for users to navigate through your web application. You will be fully prepared to move on to the exciting phase of creating HTML templates, where your well-defined views and URL mappings will come to life with engaging user interfaces. Let's dive into the world of URL routing and set the stage for a seamless user experience!
+Throughout this course section, you will work on hands-on projects, creating dynamic HTML templates with Django's powerful template tags. By the end of this section, you will have mastered the art of designing interactive and user-friendly interfaces, enhancing the overall user experience of your web application. Let's unleash the potential of Django's template tags and take your web development skills to the next level!
 
 # <span style="color:orange">Code changes</span>
 
-You can find all code changes [here](https://github.com/bobby-didcoding/build-and-deploy-dockerised-django-app-handbook/pull/13/files).
+You can find all code changes [here](https://github.com/bobby-didcoding/build-and-deploy-dockerised-django-app-handbook/pull/14/files).
 
 
 ***
