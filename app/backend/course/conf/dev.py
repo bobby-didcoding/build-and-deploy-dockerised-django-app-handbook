@@ -3,6 +3,7 @@
 # --------------------------------------------------------------
 import os
 import socket
+import logging.config
 
 # --------------------------------------------------------------
 # Project imports
@@ -47,6 +48,12 @@ from .common import (
     CELERY_TASK_SERIALIZER,
     CELERY_BEAT_SCHEDULER,
 )
+
+# --------------------------------------------------------------
+# Django  imports
+# --------------------------------------------------------------
+from django.utils.log import DEFAULT_LOGGING
+from django.core.management.color import supports_color
 
 # --------------------------------------------------------------
 # 3rd Party imports
@@ -152,4 +159,107 @@ CACHES = {
 }
 # --------------------------------------------------------------
 # END CACHE SETTINGS
+# --------------------------------------------------------------
+
+# --------------------------------------------------------------
+# LOGGING SETTINGS
+# --------------------------------------------------------------
+LOGGING_CONFIG = None
+LOGLEVEL = os.environ.get("LOGLEVEL", "DEBUG" if DEBUG else "INFO").upper()
+LOGFILEPATH = os.environ.get("LOGFILEPATH", "logs/app.log")
+CELERYLOGFILEPATH = os.environ.get("CELERYLOGFILEPATH", "logs/celery.log")
+CELERY_TASKS_LOGGER_NAME = "celery_tasks"
+
+logging.config.dictConfig(
+    {
+        "version": 1,
+        "disable_existing_loggers": False,
+        "formatters": {
+            "console": {
+                "format": "[%(asctime)s,%(msecs)03d %(levelname)s %(filename)s:%(lineno)s|%(name)s] %(message)s",
+                "datefmt": "%Y-%m-%d %H:%M:%S",
+            },
+            "course.json.formatter": {"class": "utils.logger.courseJsonFormatter"},
+            "django.server": {
+                "()": "django.utils.log.ServerFormatter",
+                "format": "[{asctime}] {message}",
+                "datefmt": "%Y-%m-%d %H:%M:%S",
+                "style": "{",
+            },
+        },
+        "handlers": {
+            "console": {
+                "class": "colorlog.StreamHandler"
+                if supports_color()
+                else "logging.StreamHandler",
+                "formatter": "colorlog" if supports_color() else "console",
+            },
+            "rotating_file": {
+                "class": "utils.logger.BetterRotatingFileHandler",
+                "formatter": "course.json.formatter",
+                "filename": LOGFILEPATH,
+                "maxBytes": 1024 * 1024 * 10,
+                "backupCount": 10,
+            },
+            "celery_rotating_file": {
+                "class": "utils.logger.BetterRotatingFileHandler",
+                "formatter": "course.json.formatter",
+                "filename": CELERYLOGFILEPATH,
+                "maxBytes": 1024 * 1024 * 10,
+                "backupCount": 10,
+            },
+            "django.server": DEFAULT_LOGGING["handlers"]["django.server"],
+        },
+        "loggers": {
+            # "root" logger which serves as a catch-all for any logs that are sent from any Python module
+            "": {
+                "level": "ERROR",
+                "handlers": ["console", "rotating_file"],
+            },
+            "django": {
+                "handlers": ["console", "rotating_file"],
+                "level": "ERROR",
+            },
+            "django.request": {
+                "handlers": ["console", "rotating_file"],
+                "level": LOGLEVEL,
+                "propagate": False,
+            },
+            "django.db.backends": {
+                "handlers": ["console", "rotating_file"],
+                "level": "ERROR",
+                "propagate": False,
+            },
+            # Logging From Your Application
+            "course": {
+                "level": LOGLEVEL,
+                "handlers": ["console", "rotating_file"],
+                "propagate": False,
+            },
+            "users": {
+                "level": LOGLEVEL,
+                "handlers": ["console", "rotating_file"],
+                "propagate": False,
+            },
+            "ecommerce": {
+                "level": LOGLEVEL,
+                "handlers": ["console", "rotating_file"],
+                "propagate": False,
+            },
+            "core": {
+                "level": LOGLEVEL,
+                "handlers": ["console", "rotating_file"],
+                "propagate": False,
+            },
+            CELERY_TASKS_LOGGER_NAME: {
+                "level": LOGLEVEL,
+                "handlers": ["console", "celery_rotating_file"],
+                "propagate": False,
+            },
+            "django.server": DEFAULT_LOGGING["loggers"]["django.server"],
+        },
+    }
+)
+# --------------------------------------------------------------
+# LOGGING SETTINGS END
 # --------------------------------------------------------------

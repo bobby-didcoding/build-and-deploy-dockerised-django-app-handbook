@@ -1,30 +1,45 @@
 # <span style="color:orange">Lecture overview</span>
 
-Congratulations on reaching this pivotal section of our course! In this module, we'll dive into the practical implementation of asynchronous tasks with Celery by creating our first task: sending emails to our users. Email notification is a critical feature in most web applications, and with Celery, we can efficiently handle email sending in the background, ensuring a smooth user experience while keeping our application responsive.
+In this essential section of our course, we'll delve into the world of logging and its significance in enhancing application monitoring and troubleshooting. Logging is a crucial aspect of any robust web application, providing valuable insights into the application's behavior and helping developers identify and fix issues efficiently. Throughout this module, we'll learn how to implement logging effectively in our Django application to track and record important events, errors, and information.
 
-Introduction to Email Sending Task: 
+Moreover, to supercharge our logging capabilities, we've introduced two new powerful packages: python-json-logger and colourlog. These packages provide enhanced functionalities for advanced logging configurations and colorful log output.
 
-We'll begin by understanding the importance of asynchronous email sending and how it enhances the overall performance of our Django application. You'll learn how Celery allows us to delegate the email sending process to background tasks, reducing user wait times during the registration, password reset, or other email-related operations.
+Introduction to Logging: 
 
-Creating the Celery Task Function: 
+We'll begin by understanding the importance of logging and its role in monitoring application behavior. You'll learn why logging is essential for capturing critical information and how it aids in diagnosing problems in both development and production environments.
 
-We'll write our first Celery task function responsible for sending emails. You'll learn how to define the task, decorate it properly, and pass necessary parameters such as the recipient's email, subject, and content.
+Setting up Logging in Django: 
 
-Asynchronous Email Sending: 
+We'll explore the built-in logging capabilities provided by Django and learn how to configure logging settings in our project. Leveraging the python-json-logger, we'll implement JSON-formatted log messages to enable structured and easily parsable logs, ensuring better analysis and integration with external logging services.
 
-With the Celery task in place, we'll execute the email sending process asynchronously in the background. You'll see how the task can be called from Django views or other parts of the application, enabling us to trigger email sending without blocking the main thread.
+Leveraging the colourlog Package: 
 
-Monitoring Tasks: 
+With the colourlog package, we'll enhance the log output by adding color-coded log levels and messages to improve readability and make log analysis more intuitive.
 
-We'll leverage Flower, the Celery monitoring tool, to monitor the progress and status of our email sending tasks. You'll see how Flower provides insights into task execution, errors, and overall task performance.
+Logging Levels and Categories: 
 
-By the end of this section, you'll have a fully functional Celery task that handles email sending efficiently in the background. You'll gain hands-on experience in integrating Celery with Django and leveraging its capabilities to streamline email-related operations.
+We'll cover the different logging levels (e.g., DEBUG, INFO, WARNING, ERROR, and CRITICAL) and their appropriate use cases. You'll learn how to categorize log messages based on severity and importance.
 
-With asynchronous email sending in place, your application will deliver a seamless and responsive user experience, ensuring that important email notifications reach your users reliably and without delay. Let's dive into the world of asynchronous tasks and make email sending a breeze in your Django application!
+Contextual Logging:
+
+We'll cover the importance of contextual logging, which involves including relevant context information (e.g., user ID, request details) in log messages. This helps in better understanding the context of events and errors during analysis.
+
+Log Rotation and Retention: 
+
+As logs can grow quickly, we'll discuss log rotation and retention strategies to manage log files effectively. You'll learn how to set up log rotation to ensure that log files remain manageable and maintainable.
+
+Monitoring and Analyzing Logs: We'll explore various tools and techniques to monitor and analyze logs effectively. You'll gain insights into identifying patterns, anomalies, and critical issues through log analysis.
+
+Best Practices for Logging: 
+Throughout the section, we'll emphasize best practices for logging, including logging sensitive information securely, avoiding excessive logging, and adhering to proper log formatting.
+
+By the end of this section, you'll have successfully implemented enhanced logging capabilities in your Django application, enriching your monitoring and debugging capabilities. With comprehensive and insightful logs in place, you'll be better equipped to maintain the health and stability of your application, proactively addressing potential issues before they escalate.
+
+Logging, along with the python-json-logger and colourlog packages, is an indispensable tool for maintaining a reliable and performant application. Let's dive into the world of logging and equip your Django app with robust monitoring and diagnostic capabilities!
 
 # <span style="color:orange">Code changes</span>
 
-You can find all code changes [here](https://github.com/bobby-didcoding/build-and-deploy-dockerised-django-app-handbook/pull/21/files).
+You can find all code changes [here](https://github.com/bobby-didcoding/build-and-deploy-dockerised-django-app-handbook/pull/23/files).
 
 
 ***
