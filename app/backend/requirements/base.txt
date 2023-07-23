@@ -1,7 +1,7 @@
-arrow
+arrow==1.2.3
 black==23.7.0
 celery==5.3.1
-colorlog
+colorlog==6.7.0
 Django==4.2
 django-celery-beat==2.5.0
 django-celery-results==2.5.1
@@ -12,9 +12,9 @@ django-redis==5.3.0
 flake8==6.0.0
 flower==2.0.0
 Pillow==10.0.0
-psycopg2-binary
+psycopg2-binary==2.9.6
 python-dotenv==1.0.0
-python-json-logger
+python-json-logger==2.0.7
 redis==4.6.0
 requests==2.31.0
 six==1.16.0
