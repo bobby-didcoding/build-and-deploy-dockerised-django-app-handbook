@@ -1,30 +1,26 @@
 # <span style="color:orange">Lecture overview</span>
 
-Congratulations on reaching this pivotal section of our course! In this module, we'll dive into the practical implementation of asynchronous tasks with Celery by creating our first task: sending emails to our users. Email notification is a critical feature in most web applications, and with Celery, we can efficiently handle email sending in the background, ensuring a smooth user experience while keeping our application responsive.
+Welcome to this exciting section of our course, where we'll explore the powerful world of Redis caching and its integration with our Django application. Caching is a fundamental technique to boost the performance and response times of web applications. In this module, we'll learn how to implement Redis caching in our Django app to store frequently accessed data and reduce database queries, resulting in a faster and more efficient user experience.
 
-Introduction to Email Sending Task: 
+Introduction to Redis Caching: 
 
-We'll begin by understanding the importance of asynchronous email sending and how it enhances the overall performance of our Django application. You'll learn how Celery allows us to delegate the email sending process to background tasks, reducing user wait times during the registration, password reset, or other email-related operations.
+We'll start by understanding the benefits of caching and its impact on application performance. You'll learn about Redis, a lightning-fast in-memory data store, and how it can be utilized as a caching backend in Django.
 
-Creating the Celery Task Function: 
+Setting Up Redis: 
 
-We'll write our first Celery task function responsible for sending emails. You'll learn how to define the task, decorate it properly, and pass necessary parameters such as the recipient's email, subject, and content.
+Before diving into the implementation, we'll configure Redis and integrate it with our Django application. You'll learn how to install and set up Redis as a caching backend, ensuring that it's ready to store and retrieve cached data.
 
-Asynchronous Email Sending: 
+Caching Mechanisms in Django: 
 
-With the Celery task in place, we'll execute the email sending process asynchronously in the background. You'll see how the task can be called from Django views or other parts of the application, enabling us to trigger email sending without blocking the main thread.
+We'll explore the various caching mechanisms available in Django, including low-level caching, template fragment caching, and database query caching. You'll understand when and how to leverage these caching techniques effectively.
 
-Monitoring Tasks: 
+By the end of this section, you'll have successfully integrated Redis caching into your Django application, dramatically improving its performance and response times. You'll be equipped with the knowledge and skills to apply caching techniques effectively, ensuring that your application delivers a seamless and optimized user experience.
 
-We'll leverage Flower, the Celery monitoring tool, to monitor the progress and status of our email sending tasks. You'll see how Flower provides insights into task execution, errors, and overall task performance.
-
-By the end of this section, you'll have a fully functional Celery task that handles email sending efficiently in the background. You'll gain hands-on experience in integrating Celery with Django and leveraging its capabilities to streamline email-related operations.
-
-With asynchronous email sending in place, your application will deliver a seamless and responsive user experience, ensuring that important email notifications reach your users reliably and without delay. Let's dive into the world of asynchronous tasks and make email sending a breeze in your Django application!
+Redis caching is a powerful tool that enables efficient data storage and retrieval, making your application more scalable and responsive. Let's dive into the world of caching and unleash the true potential of your Django app!
 
 # <span style="color:orange">Code changes</span>
 
-You can find all code changes [here](https://github.com/bobby-didcoding/build-and-deploy-dockerised-django-app-handbook/pull/21/files).
+You can find all code changes [here](https://github.com/bobby-didcoding/build-and-deploy-dockerised-django-app-handbook/pull/22/files).
 
 
 ***
