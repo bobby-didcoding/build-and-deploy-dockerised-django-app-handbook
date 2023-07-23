@@ -1,37 +1,32 @@
 # <span style="color:orange">Lecture overview</span>
 
-Welcome to the "Creating HTML Templates with Django's Template Tags" course section! In this exciting module, we will embark on a journey to design captivating and dynamic HTML templates using Django's vast library of helpful template tags. Django's templating engine provides a rich set of features that allow you to create reusable, maintainable, and responsive templates. From using {% block %} to extend base templates, employing {% include %} to incorporate reusable components, to implementing {% if %} to add conditional logic, you will harness the true potential of Django's template tags to craft visually appealing and interactive user interfaces.
+Welcome to the "Rendering Database Data in Dynamic HTML Templates" course section! Building upon our foundation of creating dynamic HTML templates with Django's powerful template tags, we will now explore the exciting world of rendering database data directly into our templates. This module will empower you to seamlessly integrate your Django web application with the database, allowing you to showcase dynamic content and provide personalized experiences for your users. By mastering database queries, context data rendering, and template loops, you will unlock the full potential of your web application, making it truly dynamic and data-driven.
 
-Understanding Django's Templating Engine:
+Connecting Django Templates to the Database:
 
-Gain a comprehensive understanding of Django's templating engine and its role in rendering dynamic HTML content.
-Familiarize yourself with template tags, template filters, and template inheritance.
+Understand the relationship between Django views, models, and templates for database data retrieval.
+Familiarize yourself with the role of context data in rendering database content within templates.
 
-Leveraging the Power of {% block %}:
+Passing Database Data to Templates:
 
-Learn how to use {% block %} to create base templates and define regions for content customization.
-Extend base templates to create consistent layouts while allowing flexibility for specific pages.
+Pass context data containing database queries and results from views to templates.
+Utilize template tags to display database data dynamically in HTML.
 
-Reusing Code with {% include %}:
+Iterating Over Querysets in Templates:
 
-Explore {% include %} to efficiently reuse common HTML components across multiple templates.
-Create reusable template snippets for headers, footers, navigation bars, and other shared elements.
+Master template loops to iterate over database querysets and render multiple records in your templates.
+Display lists, tables, and other data structures dynamically.
 
-Adding Logic with {% if %} and {% else %}:
+Displaying Dynamic User-Specific Content:
 
-Implement {% if %} and {% else %} to introduce conditional logic within your templates.
-Display content conditionally based on specific variables or user attributes.
+Customize template rendering based on user-specific data such as preferences, settings, and roles.
+Create personalized user experiences by displaying relevant content for each individual.
 
-Optimizing Template Performance:
-
-Learn best practices to optimize template rendering performance.
-Avoid common pitfalls and bottlenecks that may impact template efficiency.
-
-Throughout this course section, you will work on hands-on projects, creating dynamic HTML templates with Django's powerful template tags. By the end of this section, you will have mastered the art of designing interactive and user-friendly interfaces, enhancing the overall user experience of your web application. Let's unleash the potential of Django's template tags and take your web development skills to the next level!
+By the end of this course section, you will have gained proficiency in integrating your Django web application with the database, rendering dynamic content directly into your HTML templates. The ability to display database data efficiently and securely in your templates will elevate your web application's user experience and create a truly interactive and personalized platform. Let's delve into the world of database-driven templates and make your web application come alive with dynamic data!
 
 # <span style="color:orange">Code changes</span>
 
-You can find all code changes [here](https://github.com/bobby-didcoding/build-and-deploy-dockerised-django-app-handbook/pull/14/files).
+You can find all code changes [here](https://github.com/bobby-didcoding/build-and-deploy-dockerised-django-app-handbook/pull/15/files).
 
 
 ***

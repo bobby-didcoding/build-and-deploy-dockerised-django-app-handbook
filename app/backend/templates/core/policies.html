@@ -71,36 +71,15 @@
       <div class="container">
         <div class="portfolioContentMain">
           <div class="row g-3 g-md-4 g-lg-5 portfolioRow">
+            {% for object in page_obj %}
             <div class="col-md-6 pColMain">
               <div class="pCol">
-                <img src="{% static 'images/project-img.jpg' %}" alt="..." class="pImg">
+                <a href="{{object.get_absolute_url}}" >
+                  <img src="{{object.image.url}}" alt="{{object.title}} image" class="pImg">
+                  </a>
               </div>
             </div>
-            <div class="col-md-6 pColMain">
-              <div class="pCol">
-                <img src="{% static 'images/project-img.jpg' %}" alt="..." class="pImg">
-              </div>
-            </div>
-            <div class="col-md-6 pColMain">
-              <div class="pCol">
-                <img src="{% static 'images/project-img.jpg' %}" alt="..." class="pImg">
-              </div>
-            </div>
-            <div class="col-md-6 pColMain">
-              <div class="pCol">
-                <img src="{% static 'images/project-img.jpg' %}" alt="..." class="pImg">
-              </div>
-            </div>
-            <div class="col-md-6 pColMain">
-              <div class="pCol">
-                <img src="{% static 'images/project-img.jpg' %}" alt="..." class="pImg">
-              </div>
-            </div>
-            <div class="col-md-6 pColMain">
-              <div class="pCol">
-                <img src="{% static 'images/project-img.jpg' %}" alt="..." class="pImg">
-              </div>
-            </div>
+            {% endfor%}
           </div>
         </div>
       </div>

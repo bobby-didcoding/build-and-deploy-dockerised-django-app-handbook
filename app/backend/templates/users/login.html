@@ -69,13 +69,15 @@
   <section>
     <div class="lightBg">
       <div class="container">
-          <form id="signinForm">
+        <form id="securebasicform" method="POST" action="{{request.path}}">
+          {% csrf_token %}
+          {{form.recaptcha_token}}
 
               <label for="email">Email</label>
-              <input type="email" id="email" name="email" placeholder="Your email..">
+              {{form.email}}
 
               <label for="password">Password</label>
-              <input type="password" id="password" name="password" placeholder="Password..">
+              {{form.password}}
 
               <input class='btn btnPrimary' type="submit" value="Submit">
           </form>

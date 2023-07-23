@@ -9,9 +9,12 @@
             <li><a href="{{my_linkedin}}" target="_blank"><img src="{% static 'images/linkedin.svg' %}" alt="..."></a></li>
         </ul>
         <div class="copyrightCol">
-            <form id="newsletterForm">
-            <input type="email" id="email" name="email" placeholder="Add your email to subscribe to our newsletter..">
-            <input class='btn btnPrimary' type="submit" value="Submit">
+            <form id="nlsecurebasicform" action="{{request.path}}" method="POST" accept-charset="utf-8">
+                {% csrf_token %}
+                {{request.generic_nl_form.nl_email}}
+                {{request.generic_nl_form.nl_recaptcha_token}}
+                {{request.generic_nl_form.is_generic_nl_form}}
+                <input class='btn btnPrimary' type="submit" value="Subscribe">
             </form>
         </div> 
         <div class="copyrightCol">
