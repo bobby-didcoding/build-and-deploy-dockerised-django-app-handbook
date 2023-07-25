@@ -1,0 +1,1 @@
+FROM stripe/stripe-cli
