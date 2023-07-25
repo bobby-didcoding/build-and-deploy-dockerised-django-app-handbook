@@ -9,12 +9,14 @@ env:
     STAGE_CELERY_IMAGE: ghcr.io/$(echo $GITHUB_REPOSITORY | tr '[:upper:]' '[:lower:]')/stage_celery
     STAGE_BEAT_IMAGE: ghcr.io/$(echo $GITHUB_REPOSITORY | tr '[:upper:]' '[:lower:]')/stage_beat
     STAGE_DB_IMAGE: ghcr.io/$(echo $GITHUB_REPOSITORY | tr '[:upper:]' '[:lower:]')/stage_db
+    STAGE_STRIPE_IMAGE: ghcr.io/$(echo $GITHUB_REPOSITORY | tr '[:upper:]' '[:lower:]')/stage_stripe
     PROD_REDIS_IMAGE: ghcr.io/$(echo $GITHUB_REPOSITORY | tr '[:upper:]' '[:lower:]')/prod_redis
     PROD_NGINX_IMAGE: ghcr.io/$(echo $GITHUB_REPOSITORY | tr '[:upper:]' '[:lower:]')/prod_nginx
     PROD_APP_IMAGE: ghcr.io/$(echo $GITHUB_REPOSITORY | tr '[:upper:]' '[:lower:]')/prod_app
     PROD_CELERY_IMAGE: ghcr.io/$(echo $GITHUB_REPOSITORY | tr '[:upper:]' '[:lower:]')/prod_celery
     PROD_BEAT_IMAGE: ghcr.io/$(echo $GITHUB_REPOSITORY | tr '[:upper:]' '[:lower:]')/prod_beat
     PROD_DB_IMAGE: ghcr.io/$(echo $GITHUB_REPOSITORY | tr '[:upper:]' '[:lower:]')/prod_db
+    PROD_STRIPE_IMAGE: ghcr.io/$(echo $GITHUB_REPOSITORY | tr '[:upper:]' '[:lower:]')/prod_stripe
 
 jobs:
 
@@ -69,6 +71,7 @@ jobs:
                 echo "STAGE_CELERY_IMAGE=$(echo ${{env.STAGE_CELERY_IMAGE}} )" >> $GITHUB_ENV
                 echo "STAGE_BEAT_IMAGE=$(echo ${{env.STAGE_BEAT_IMAGE}} )" >> $GITHUB_ENV
                 echo "STAGE_DB_IMAGE=$(echo ${{env.STAGE_DB_IMAGE}} )" >> $GITHUB_ENV
+                echo "STAGE_STRIPE_IMAGE=$(echo ${{env.STAGE_STRIPE_IMAGE}} )" >> $GITHUB_ENV
 
 
           - name: Log in to GitHub Packages
@@ -83,6 +86,7 @@ jobs:
                 docker pull ${{ env.STAGE_APP_IMAGE }} || true
                 docker pull ${{ env.STAGE_CELERY_IMAGE }} || true
                 docker pull ${{ env.STAGE_BEAT_IMAGE }} || true
+                docker pull ${{ env.STAGE_STRIPE_IMAGE }} || true
           - name: Build stage images
             run: |
                 docker-compose -f docker-compose.stage.cicd.yml build
@@ -94,6 +98,7 @@ jobs:
                 docker push ${{ env.STAGE_CELERY_IMAGE }}
                 docker push ${{ env.STAGE_BEAT_IMAGE }}
                 docker push ${{ env.STAGE_DB_IMAGE }}
+                docker push ${{ env.STAGE_STRIPE_IMAGE }}
     
     build-production:
       name: Build Docker Images
@@ -146,6 +151,7 @@ jobs:
               echo "PROD_CELERY_IMAGE=$(echo ${{env.PROD_CELERY_IMAGE}} )" >> $GITHUB_ENV
               echo "PROD_BEAT_IMAGE=$(echo ${{env.PROD_BEAT_IMAGE}} )" >> $GITHUB_ENV
               echo "PROD_DB_IMAGE=$(echo ${{env.PROD_DB_IMAGE}} )" >> $GITHUB_ENV
+              echo "PROD_STRIPE_IMAGE=$(echo ${{env.PROD_STRIPE_IMAGE}} )" >> $GITHUB_ENV
 
         - name: Log in to GitHub Packages
           run: echo ${PERSONAL_ACCESS_TOKEN} | docker login ghcr.io -u ${{ secrets.NAMESPACE }} --password-stdin
@@ -159,6 +165,7 @@ jobs:
               docker pull ${{ env.PROD_APP_IMAGE }} || true
               docker pull ${{ env.PROD_CELERY_IMAGE }} || true
               docker pull ${{ env.PROD_BEAT_IMAGE }} || true
+              docker pull ${{ env.PROD_STRIPE_IMAGE }} || true
 
         - name: Build production images
           run: |
@@ -171,6 +178,7 @@ jobs:
               docker push ${{ env.PROD_CELERY_IMAGE }}
               docker push ${{ env.PROD_BEAT_IMAGE }}
               docker push ${{ env.PROD_DB_IMAGE }}
+              docker push ${{ env.PROD_STRIPE_IMAGE }}
 
     staging:
         name: Deploy to DigitalOcean Stage
@@ -223,6 +231,7 @@ jobs:
                 echo CELERY_IMAGE=${{ env.STAGE_CELERY_IMAGE }} >> .env
                 echo BEAT_IMAGE=${{ env.STAGE_BEAT_IMAGE }} >> .env
                 echo DB_IMAGE=${{ env.STAGE_DB_IMAGE }} >> .env
+                echo STRIPE_IMAGE=${{ env.STAGE_STRIPE_IMAGE }} >> .env
 
                 
           - name: Add the private SSH key to the ssh-agent
@@ -314,6 +323,7 @@ jobs:
                 echo CELERY_IMAGE=${{ env.PROD_CELERY_IMAGE }} >> .env
                 echo BEAT_IMAGE=${{ env.PROD_BEAT_IMAGE }} >> .env
                 echo DB_IMAGE=${{ env.PROD_DB_IMAGE }} >> .env
+                echo STRIPE_IMAGE=${{ env.PROD_STRIPE_IMAGE }} >> .env
 
           - name: Add the private SSH key to the ssh-agent
             env:

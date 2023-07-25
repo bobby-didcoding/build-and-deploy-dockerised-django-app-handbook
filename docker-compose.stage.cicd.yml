@@ -38,6 +38,22 @@ services:
             - ./.env
         depends_on:
             - db
+
+    stripe-cli:
+        build:
+            context: ./app/backend
+            dockerfile: docker/docker_files/Dockerfile.stripe
+            cache_from:
+                - "${STAGE_STRIPE_IMAGE}"
+        image: "${STAGE_STRIPE_IMAGE}"
+        container_name: stripe-cli
+        networks:
+            - inside-network
+        env_file:
+            - ./.env
+        command: "listen --api-key ${STRIPE_SECRET} --device-name 'stage' --forward-to app:8000/stripe-webhooks/"
+        depends_on:
+            - app
     
     redis:
         build:
