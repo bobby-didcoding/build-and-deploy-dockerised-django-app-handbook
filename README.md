@@ -16,7 +16,7 @@ In this hands-on course, we will delve into the world of Django, one of the most
 1. Navigate to your development directory and open a terminal.
 2. Clone the development repository:
     ```
-    git clone https://github.com/bobby-didcoding/build-and-deploy-dockerised-django-app-handbook.git .
+    git clone -b 07-forms https://github.com/bobby-didcoding/build-and-deploy-dockerised-django-app-handbook.git .
     ```
 
 
