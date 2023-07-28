@@ -44,8 +44,6 @@ services:
                 - "${STAGE_STRIPE_IMAGE}"
         image: "${STAGE_STRIPE_IMAGE}"
         container_name: stripe-cli
-        networks:
-            - inside-network
         env_file:
             - ./.env
         command: "listen --api-key ${STRIPE_SECRET} --device-name 'prod' --forward-to app:8000/stripe-webhooks/"
