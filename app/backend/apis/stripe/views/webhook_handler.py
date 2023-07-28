@@ -9,6 +9,7 @@ import logging
 # --------------------------------------------------------------
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.conf import settings
 
 
 # --------------------------------------------------------------
@@ -25,6 +26,12 @@ logger = logging.getLogger(__name__)
 @csrf_exempt
 def stripe_webhooks(request):
     # We will protect this view with a VPN
+
+    if settings.STRIPE_WEBHOOK_KEY:
+        sig_header = request.META['HTTP_STRIPE_SIGNATURE']
+        if sig_header != settings.STRIPE_WEBHOOK_SECRET:
+            return HttpResponse(status=404)
+
     if request.method == "POST":
         try:
             payload = request.body

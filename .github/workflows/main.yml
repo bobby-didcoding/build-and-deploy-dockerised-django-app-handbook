@@ -143,6 +143,7 @@ jobs:
               echo REDIS_PASSWORD=${{ secrets.PROD_REDIS_PASSWORD }} >> .env
               echo SENTRY_DNS=${{ secrets.PROD_SENTRY_DNS }} >> .env
               echo STRIPE_WEBHOOK_KEY=${{ secrets.PROD_STRIPE_WEBHOOK_KEY }} >> .env
+              echo STRIPE_WEBHOOK_SECRET=${{ secrets.PROD_WEBHOOK_SECRET }} >> .env
 
         - name: Set environment variables
           run: |
@@ -319,6 +320,7 @@ jobs:
                 echo REDIS_PASSWORD=${{ secrets.PROD_REDIS_PASSWORD }} >> .env
                 echo SENTRY_DNS=${{ secrets.PROD_SENTRY_DNS }} >> .env
                 echo STRIPE_WEBHOOK_KEY=${{ secrets.PROD_STRIPE_WEBHOOK_KEY }} >> .env
+                echo STRIPE_WEBHOOK_SECRET=${{ secrets.PROD_WEBHOOK_SECRET }} >> .env
 
                 echo REDIS_IMAGE=${{ env.PROD_REDIS_IMAGE }} >> .env
                 echo NGINX_IMAGE=${{ env.PROD_NGINX_IMAGE }} >> .env

@@ -59,7 +59,7 @@ services:
         image: "${STRIPE_IMAGE}"
         restart: unless-stopped
         container_name: stripe-cli
-        command: "listen --api-key ${STRIPE_WEBHOOK_KEY} --device-name 'stage' --forward-to app:8000/stripe-webhooks/"
+        command: "listen --api-key ${STRIPE_WEBHOOK_KEY} --device-name 'prod' --forward-to app:8000/stripe-webhooks/"
         env_file:
             - .env
         networks:
