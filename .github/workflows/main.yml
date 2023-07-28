@@ -23,7 +23,7 @@ jobs:
     build-staging:
         name: Build Docker Images
         runs-on: ubuntu-latest
-
+        if: github.ref == 'refs/heads/stage'
         steps:
           - name: Checkout master
             uses: actions/checkout@v1
@@ -103,6 +103,7 @@ jobs:
     build-production:
       name: Build Docker Images
       runs-on: ubuntu-latest
+      if: github.ref == 'refs/heads/prod'
       steps:
         - name: Checkout master
           uses: actions/checkout@v1
@@ -351,7 +352,7 @@ jobs:
                     rm wsgi.stage.py
                     cd ../..
                     source .env
-                    echo "${{secrets.PROD_CERT_PEM}}"" > /etc/ssl/certs/cert.pem
+                    echo "${{secrets.PROD_CERT_PEM}}" > /etc/ssl/certs/cert.pem
                     echo "${{secrets.PROD_CERT_KEY}}" > /etc/ssl/certs/key.pem
                     echo ${{secrets.PERSONAL_ACCESS_TOKEN}} | docker login ghcr.io -u ${{ secrets.NAMESPACE }} --password-stdin
                     docker pull $REDIS_IMAGE
