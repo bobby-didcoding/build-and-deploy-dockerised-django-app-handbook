@@ -61,6 +61,11 @@ You can find all code changes [here](https://github.com/bobby-didcoding/build-an
     cd ..
     mkdir var/log/course
     ```
+9) Now we need to create some blank certificates for ssl.
+    ```
+    echo > etc/ssl/certs/key.pem
+    echo > etc/ssl/certs/cert.pem
+    ```
 
 All Done, your droplet is now ready for our project.
 
