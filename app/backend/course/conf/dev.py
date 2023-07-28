@@ -180,6 +180,11 @@ logging.config.dictConfig(
                 "datefmt": "%Y-%m-%d %H:%M:%S",
             },
             "course.json.formatter": {"class": "utils.logger.courseJsonFormatter"},
+            'colorlog': {
+                'class': 'colorlog.ColoredFormatter',
+                'format': '%(log_color)s[%(asctime)s,%(msecs)03d %(levelname)s %(filename)s:%(lineno)s|%(name)s] %(message)s',
+                'datefmt': "%Y-%m-%d %H:%M:%S",
+            },
             "django.server": {
                 "()": "django.utils.log.ServerFormatter",
                 "format": "[{asctime}] {message}",
