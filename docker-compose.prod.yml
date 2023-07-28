@@ -13,6 +13,8 @@ services:
         container_name: db
         networks:
             - main_course_network
+        volumes:
+            - ./pg_init_prod.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
 
 
     redis:

@@ -1,0 +1,151 @@
+[ 
+  
+  {
+    "model": "core.Blog",
+    "fields": {
+      "title": "Claim Your Piece of a Fantasy Planet and Unleash its Hidden Treasures",
+      "description": "<p>Introduction:</p><p>Step into the enchanting world of Oddersea, a fantasy planet brimming with a precious resource known as Oddium. At Oddersea, we offer users the opportunity to purchase their very own plot of land on this captivating planet. Each piece of land serves as a gateway to unearthing the riches hidden beneath its surface. In this blog post, we'll explore the thrilling experience of land acquisition on Oddersea, mining Oddium, and the exciting future prospects that await users who join us during the BETA release.</p>",
+      "image": "oddling_1.jpg"
+    }
+  },
+  {
+    "model": "core.Blog",
+    "fields": {
+      "title": "Unleash Your Creativity with Oddersea's Unique 'Build Your Own' Oddling NFTs",
+      "description": "<p>Introduction:</p><p>In the dynamic world of NFTs, Oddersea stands out with its groundbreaking feature: 'Build Your Own' Oddling NFTs. This innovative concept empowers users to unleash their creativity and construct one-of-a-kind Oddling companions. These personalized NFTs serve multiple purposes within the Oddersea app, enhancing ODD mining rates and future gaming experiences. In this blog post, we'll delve into the captivating world of Oddlings and explore how they bring a whole new level of engagement to the virtual realm.</p>",
+      "image": "oddling_2.jpg"
+    }
+  },
+  {
+    "model": "core.Blog",
+    "fields": {
+      "title": "Oddersea ICO: Join the Revolution with ODD Coin and Unlock the Future of Digital Rewards",
+      "description": "<p>Introduction:</p><p>We are thrilled to announce the highly anticipated ICO (Initial Coin Offering) for ODD Coin, the fungible token that powers the exciting world of Oddersea. This groundbreaking ICO presents an extraordinary opportunity for individuals to become part of the Oddersea ecosystem and experience the rewards of mining, gaming, and more. In this blog post, we will delve into the details of the upcoming ICO, highlighting the benefits of ODD Coin and how it will revolutionize the way users engage with Oddersea.</p>",
+      "image": "oddling_3.jpg"
+    }
+  },
+  {
+    "model": "core.Portfolio",
+    "fields": {
+      "title": "Claim Your Piece of a Fantasy Planet and Unleash its Hidden Treasures",
+      "description": "<p>Introduction:</p><p>Step into the enchanting world of Oddersea, a fantasy planet brimming with a precious resource known as Oddium. At Oddersea, we offer users the opportunity to purchase their very own plot of land on this captivating planet. Each piece of land serves as a gateway to unearthing the riches hidden beneath its surface. In this blog post, we'll explore the thrilling experience of land acquisition on Oddersea, mining Oddium, and the exciting future prospects that await users who join us during the BETA release.</p>",
+      "image": "oddling_1.jpg"
+    }
+  },
+  {
+    "model": "core.Portfolio",
+    "fields": {
+      "title": "Unleash Your Creativity with Oddersea's Unique 'Build Your Own' Oddling NFTs",
+      "description": "<p>Introduction:</p><p>In the dynamic world of NFTs, Oddersea stands out with its groundbreaking feature: 'Build Your Own' Oddling NFTs. This innovative concept empowers users to unleash their creativity and construct one-of-a-kind Oddling companions. These personalized NFTs serve multiple purposes within the Oddersea app, enhancing ODD mining rates and future gaming experiences. In this blog post, we'll delve into the captivating world of Oddlings and explore how they bring a whole new level of engagement to the virtual realm.</p>",
+      "image": "oddling_2.jpg"
+    }
+  },
+  {
+    "model": "core.Portfolio",
+    "fields": {
+      "title": "Oddersea ICO: Join the Revolution with ODD Coin and Unlock the Future of Digital Rewards",
+      "description": "<p>Introduction:</p><p>We are thrilled to announce the highly anticipated ICO (Initial Coin Offering) for ODD Coin, the fungible token that powers the exciting world of Oddersea. This groundbreaking ICO presents an extraordinary opportunity for individuals to become part of the Oddersea ecosystem and experience the rewards of mining, gaming, and more. In this blog post, we will delve into the details of the upcoming ICO, highlighting the benefits of ODD Coin and how it will revolutionize the way users engage with Oddersea.</p>",
+      "image": "oddling_3.jpg"
+    }
+  },
+  {
+    "model": "core.Policy",
+    "fields": {
+      "title": "Cookie Policy",
+      "description": "<p>This is our cookie policy</p>"
+    }
+  },
+  {
+    "model": "core.Policy",
+    "fields": {
+      "title": "Terms of Service",
+      "description": "<p>Our Terms of Service</p>"
+    }
+  },
+  {
+    "model": "core.Policy",
+    "fields": {
+      "title": "Privacy Policy",
+      "description": "<p>This is our privacy policy</p>"
+    }
+  },
+  {
+    "model": "core.Skill",
+    "fields": {
+      "title": "Python",
+      "score": 95
+    }
+  },
+  {
+    "model": "core.Skill",
+    "fields": {
+      "title": "Full Stack",
+      "score": 80
+    }
+  },
+  {
+    "model": "core.Skill",
+    "fields": {
+      "title": "Django",
+      "score": 90
+    }
+  },
+  {
+    "model": "core.Testimonial",
+    "fields": {
+      "title": "The Best",
+      "description": "This is a demo testimonial"
+    }
+  },
+  {
+    "model": "core.Testimonial",
+    "fields": {
+      "title": "Did Coding Rocks",
+      "description": "This is a demo testimonial"
+    }
+  },
+  {
+    "model": "core.Testimonial",
+    "fields": {
+      "title": "Oddersea Rocks",
+      "description": "This is a demo testimonial"
+    }
+  },
+  {
+    "model": "core.Certificate",
+    "fields": {
+      "title": "Python",
+      "description": "This is a demo certificate"
+    }
+  },
+  {
+    "model": "core.Certificate",
+    "fields": {
+      "title": "Full Stack",
+      "description": "This is a demo certificate"
+    }
+  },
+  {
+    "model": "core.Certificate",
+    "fields": {
+      "title": "Django",
+      "description": "This is a demo certificate"
+    }
+  },
+  
+  {
+    "model": "ecommerce.Price",
+    "fields": {
+      "id": "5c55d465-eef1-42ba-9f87-a46cb084024c",
+      "amount": 20.0
+    }
+  },
+  {
+    "model": "ecommerce.Price",
+    "fields": {
+      "id": "9f59dca3-9584-4c4e-9021-b7ca35dc04a2",
+      "amount": 15.0
+    }
+  }
+
+]
