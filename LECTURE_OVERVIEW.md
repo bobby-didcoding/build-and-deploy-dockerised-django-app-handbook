@@ -2,7 +2,7 @@
 
 Welcome to the "Connecting and Preparing Your Digital Ocean Droplet for Deployment with Visual Studio Code" course section! In this module, we will walk you through the step-by-step process of establishing a secure connection to your Digital Ocean droplet using Visual Studio Code (VS Code) as your development environment. We will also cover essential tasks such as installing necessary software like Docker Compose, creating a new user for enhanced security, and setting up logging directories for efficient management.
 
-1) Introduction to Visual Studio Code and Digital Ocean:
+Introduction to Visual Studio Code and Digital Ocean:
 
 - Brief overview of Visual Studio Code and its advantages for server management
 - Introduction to Digital Ocean droplets and their role in hosting applications
@@ -21,6 +21,48 @@ By the end of this course section, you will be proficient in connecting to your 
 # <span style="color:orange">Code changes</span>
 
 You can find all code changes [here](https://github.com/bobby-didcoding/build-and-deploy-dockerised-django-app-handbook/pull/29/files).
+
+# <span style="color:orange">Instructions</span>
+
+1) SSH into droplet
+
+2) Open a new terminal and use the following to upgrade package information:
+    ```
+    sudo apt update
+    sudo apt upgrade
+    ```
+3) When complete you can go ahead and download the current stable release of docker-compose
+    ```
+    sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+    ```
+4) We now need to apply executable permissions to the binary file. You can do this by using the following command:
+    ```
+    sudo chmod +x /usr/local/bin/docker-compose
+    ```
+5) Create a symbolic link to /usr/bin path. You can do this by using the following command:
+    ```
+    sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+    ```
+6) To test that docker and docker-compose are both present and correct, use the following commands.
+    ```
+    docker --version
+    docker-compose --version
+    ```
+
+7) You can now create a new user that will be used for our project.
+    ```
+    adduser course
+    usermod -aG sudo course
+    gpasswd -a course sudo
+    ```
+
+8) Go ahead and create a new directory for our project logs.
+    ```
+    cd ..
+    mkdir var/log/course
+    ```
+
+All Done, your droplet is now ready for our project.
 
 ***
 ***
