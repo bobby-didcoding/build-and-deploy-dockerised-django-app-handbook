@@ -44,6 +44,7 @@ PROD_SENTRY_DNS| Your Sentry DNS | https://12345.ingest.sentry.io/12345
 PROD_STRIPE_PUBLISHABLE| Your LIVE Stripe publishable key | pk_live_klsghflhrgfljshrgfx
 PROD_STRIPE_SECRET| Your LIVE Stripe API key | sk_live_klhfklsrhfklrhgfklx
 PROD_SUPPORT_EMAIL| Email address that is added to emails | bobby@didcoding.com
+PROD_STRIPE_WEBHOOK_KEY| Restricted key from stripe with webhook read permissions | rk_live_jdhvfsdshvgdsjhn
 STAGE_AWS_ACCESS_KEY_ID| Your Digital Ocean spaces api key : https://cloud.digitalocean.com/account/api/spaces | argtfgbvsthstgfr
 STAGE_AWS_LOCATION| Then name of the static directory in Digital Ocean | static
 STAGE_AWS_MEDIA_LOCATION| Then name of the media directory in Digital Ocean | media
