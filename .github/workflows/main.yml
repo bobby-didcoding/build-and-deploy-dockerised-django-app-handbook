@@ -246,7 +246,7 @@ jobs:
             env:
                 SSH_AUTH_SOCK: /tmp/ssh_agent.sock
             run: |
-                scp  -o StrictHostKeyChecking=no -r ./.env ./app/backend ./app/nginx ./docker-compose.stage.yml root@${{ secrets.STAGE_IP_ADDRESS }}:/home/course
+                scp  -o StrictHostKeyChecking=no -r ./.env ./app/backend ./app/nginx ./docker-compose.stage.yml ./pg_init_stage.sql root@${{ secrets.STAGE_IP_ADDRESS }}:/home/course
                 ssh -o StrictHostKeyChecking=no root@${{ secrets.STAGE_IP_ADDRESS }} << 'ENDSSH'
                     cd /home/course
                     mv docker-compose.stage.yml docker-compose.yml
@@ -337,7 +337,7 @@ jobs:
             env:
                 SSH_AUTH_SOCK: /tmp/ssh_agent.sock
             run: |
-                scp  -o StrictHostKeyChecking=no -r ./.env ./app/backend ./app/nginx ./docker-compose.prod.yml root@${{ secrets.PROD_IP_ADDRESS }}:/home/course
+                scp  -o StrictHostKeyChecking=no -r ./.env ./app/backend ./app/nginx ./docker-compose.prod.yml ./pg_init_prod.sql root@${{ secrets.PROD_IP_ADDRESS }}:/home/course
                 ssh -o StrictHostKeyChecking=no root@${{ secrets.PROD_IP_ADDRESS }} << 'ENDSSH'
                     cd /home/course
                     mv docker-compose.prod.yml docker-compose.yml
