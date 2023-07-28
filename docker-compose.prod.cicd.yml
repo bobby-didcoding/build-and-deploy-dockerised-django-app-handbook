@@ -41,8 +41,8 @@ services:
             context: ./app/backend
             dockerfile: docker/docker_files/Dockerfile.stripe
             cache_from:
-                - "${STAGE_STRIPE_IMAGE}"
-        image: "${STAGE_STRIPE_IMAGE}"
+                - "${PROD_STRIPE_IMAGE}"
+        image: "${PROD_STRIPE_IMAGE}"
         container_name: stripe-cli
         env_file:
             - ./.env
