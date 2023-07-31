@@ -2,7 +2,7 @@
 # Python  imports
 # --------------------------------------------------------------
 import os
-import socket
+import logging.config
 
 # --------------------------------------------------------------
 # Project imports
@@ -40,7 +40,15 @@ from .common import (
     COOKIE_BOT,
     STRIPE_SECRET_KEY,
     STRIPE_PUBLISHABLE,
+    STRIPE_WEBHOOK_SECRET,
+    STRIPE_WEBHOOK_KEY,
 )
+
+# --------------------------------------------------------------
+# Django  imports
+# --------------------------------------------------------------
+from django.utils.log import DEFAULT_LOGGING
+from django.core.management.color import supports_color
 
 # --------------------------------------------------------------
 # 3rd Party imports
@@ -83,7 +91,8 @@ RECAPTCHA_PRIVATE_KEY = RECAPTCHA_PRIVATE_KEY
 COOKIE_BOT = COOKIE_BOT
 STRIPE_SECRET_KEY = STRIPE_SECRET_KEY
 STRIPE_PUBLISHABLE = STRIPE_PUBLISHABLE
-
+STRIPE_WEBHOOK_SECRET = STRIPE_WEBHOOK_SECRET
+STRIPE_WEBHOOK_KEY = STRIPE_WEBHOOK_KEY
 PRODUCTION = 1
 DEBUG = 1
 CSRF_TRUSTED_ORIGINS = [f'https://{h}' for h in ALLOWED_HOSTS]
