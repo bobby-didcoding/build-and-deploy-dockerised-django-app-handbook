@@ -34,7 +34,7 @@ jobs:
                 echo NAMESPACE=${{ secrets.NAMESPACE }} >> .env
                 echo SECRET_KEY=${{ secrets.STAGE_SECRET_KEY }} >> .env
                 echo SUPPORT_EMAIL=${{ secrets.STAGE_SUPPORT_EMAIL }} >> .env
-                echo EMAIL_ADDRESS=${{ secrets.STAGE_EMAIL_ADDRESS }} >> .env
+                echo DONOT_REPLY_EMAIL=${{ secrets.STAGE_EMAIL_ADDRESS }} >> .env
                 echo EMAIL_PASSWORD=${{ secrets.STAGE_EMAIL_PASSWORD }} >> .env
                 echo EMAIL_HOST=${{ secrets.STAGE_EMAIL_HOST }} >> .env
                 echo EMAIL_PORT=${{ secrets.STAGE_EMAIL_PORT }} >> .env
@@ -114,7 +114,7 @@ jobs:
               echo NAMESPACE=${{ secrets.NAMESPACE }} >> .env
               echo SECRET_KEY=${{ secrets.PROD_SECRET_KEY }} >> .env
               echo SUPPORT_EMAIL=${{ secrets.PROD_SUPPORT_EMAIL }} >> .env
-              echo EMAIL_ADDRESS=${{ secrets.PROD_EMAIL_ADDRESS }} >> .env
+              echo DONOT_REPLY_EMAIL=${{ secrets.PROD_EMAIL_ADDRESS }} >> .env
               echo EMAIL_PASSWORD=${{ secrets.PROD_EMAIL_PASSWORD }} >> .env
               echo EMAIL_HOST=${{ secrets.PROD_EMAIL_HOST }} >> .env
               echo EMAIL_PORT=${{ secrets.PROD_EMAIL_PORT }} >> .env
@@ -143,6 +143,7 @@ jobs:
               echo REDIS_PASSWORD=${{ secrets.PROD_REDIS_PASSWORD }} >> .env
               echo SENTRY_DNS=${{ secrets.PROD_SENTRY_DNS }} >> .env
               echo STRIPE_WEBHOOK_KEY=${{ secrets.PROD_STRIPE_WEBHOOK_KEY }} >> .env
+              echo STRIPE_WEBHOOK_SECRET=${{ secrets.PROD_WEBHOOK_SECRET }} >> .env
 
         - name: Set environment variables
           run: |
@@ -198,7 +199,7 @@ jobs:
                 echo NAMESPACE=${{ secrets.NAMESPACE }} >> .env
                 echo SECRET_KEY=${{ secrets.STAGE_SECRET_KEY }} >> .env
                 echo SUPPORT_EMAIL=${{ secrets.STAGE_SUPPORT_EMAIL }} >> .env
-                echo EMAIL_ADDRESS=${{ secrets.STAGE_EMAIL_ADDRESS }} >> .env
+                echo DONOT_REPLY_EMAIL=${{ secrets.STAGE_EMAIL_ADDRESS }} >> .env
                 echo EMAIL_PASSWORD=${{ secrets.STAGE_EMAIL_PASSWORD }} >> .env
                 echo EMAIL_HOST=${{ secrets.STAGE_EMAIL_HOST }} >> .env
                 echo EMAIL_PORT=${{ secrets.STAGE_EMAIL_PORT }} >> .env
@@ -290,7 +291,7 @@ jobs:
                 echo NAMESPACE=${{ secrets.NAMESPACE }} >> .env
                 echo SECRET_KEY=${{ secrets.PROD_SECRET_KEY }} >> .env
                 echo SUPPORT_EMAIL=${{ secrets.PROD_SUPPORT_EMAIL }} >> .env
-                echo EMAIL_ADDRESS=${{ secrets.PROD_EMAIL_ADDRESS }} >> .env
+                echo DONOT_REPLY_EMAIL=${{ secrets.PROD_EMAIL_ADDRESS }} >> .env
                 echo EMAIL_PASSWORD=${{ secrets.PROD_EMAIL_PASSWORD }} >> .env
                 echo EMAIL_HOST=${{ secrets.PROD_EMAIL_HOST }} >> .env
                 echo EMAIL_PORT=${{ secrets.PROD_EMAIL_PORT }} >> .env
@@ -319,6 +320,7 @@ jobs:
                 echo REDIS_PASSWORD=${{ secrets.PROD_REDIS_PASSWORD }} >> .env
                 echo SENTRY_DNS=${{ secrets.PROD_SENTRY_DNS }} >> .env
                 echo STRIPE_WEBHOOK_KEY=${{ secrets.PROD_STRIPE_WEBHOOK_KEY }} >> .env
+                echo STRIPE_WEBHOOK_SECRET=${{ secrets.PROD_WEBHOOK_SECRET }} >> .env
 
                 echo REDIS_IMAGE=${{ env.PROD_REDIS_IMAGE }} >> .env
                 echo NGINX_IMAGE=${{ env.PROD_NGINX_IMAGE }} >> .env
