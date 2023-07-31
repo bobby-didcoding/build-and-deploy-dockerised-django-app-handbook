@@ -14,6 +14,15 @@ from core.tests.models import (
 
 from core.tests.forms import ContactFormTestCase, GenericNewsLetterFormTestCase
 
+from core.tests.views import (
+    HomeViewTestCase,
+    BlogsViewTestCase,
+    BlogViewTestCase,
+    PoliciesViewTestCase,
+    PolicyViewTestCase,
+    PortfolioViewTestCase,
+    PortfoliosViewTestCase,
+)
 
 __all__ = [
     BlogTestCase,
@@ -26,4 +35,11 @@ __all__ = [
     TestimonialTestCase,
     ContactFormTestCase,
     GenericNewsLetterFormTestCase,
+    HomeViewTestCase,
+    BlogsViewTestCase,
+    BlogViewTestCase,
+    PoliciesViewTestCase,
+    PolicyViewTestCase,
+    PortfolioViewTestCase,
+    PortfoliosViewTestCase,
 ]
