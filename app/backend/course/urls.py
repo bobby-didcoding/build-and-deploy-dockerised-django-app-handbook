@@ -6,7 +6,14 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
+from django.views import defaults as default_views
 from users.forms import EmailValidationOnForgotPassword
+
+handler400 = "course.views.handler400"
+handler403 = "course.views.handler403"
+handler404 = "course.views.handler404"
+handler500 = "course.views.handler500"
+handler503 = "course.views.handler503"
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -38,6 +45,24 @@ urlpatterns = [
 if not settings.PRODUCTION:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += [
+        path(
+            "400/",
+            default_views.bad_request,
+            kwargs={"exception": Exception("Bad Request!")},
+        ),
+        path(
+            "403/",
+            default_views.permission_denied,
+            kwargs={"exception": Exception("Permission Denied")},
+        ),
+        path(
+            "404/",
+            default_views.page_not_found,
+            kwargs={"exception": Exception("Page not Found")},
+        ),
+        path("500/", default_views.server_error),
+    ]
 else:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

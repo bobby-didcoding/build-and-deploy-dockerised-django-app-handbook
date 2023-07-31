@@ -19,7 +19,7 @@ def session_create(request):
         request.method == "POST"
         and request.META.get("HTTP_X_REQUESTED_WITH") == "XMLHttpRequest"
     ):
-        #cart = request.user.cart_customer
+        # cart = request.user.cart_customer
         checkout_url = "/"  # We will wire up the stripe API soon
 
         data.update(
