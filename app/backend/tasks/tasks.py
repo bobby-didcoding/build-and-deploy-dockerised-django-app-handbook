@@ -93,7 +93,7 @@ def create_email(self, **kwargs):
 
 
 @shared_task(bind=True)
-def send_account_summary_to_support():
+def send_account_summary_to_support(self):
     kwargs = {
         "internal": True,
         "subject": "Course - New account summary",
