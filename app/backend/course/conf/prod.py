@@ -2,6 +2,7 @@
 # Python  imports
 # --------------------------------------------------------------
 import os
+import logging.config
 
 # --------------------------------------------------------------
 # Project imports
@@ -39,6 +40,8 @@ from .common import (
     COOKIE_BOT,
     STRIPE_SECRET_KEY,
     STRIPE_PUBLISHABLE,
+    STRIPE_WEBHOOK_SECRET,
+    STRIPE_WEBHOOK_KEY,
     CELERY_BROKER_URL,
     CELERY_RESULT_BACKEND,
     CELERY_ACCEPT_CONTENT,
@@ -46,6 +49,12 @@ from .common import (
     CELERY_TASK_SERIALIZER,
     CELERY_BEAT_SCHEDULER,
 )
+
+# --------------------------------------------------------------
+# Django  imports
+# --------------------------------------------------------------
+from django.utils.log import DEFAULT_LOGGING
+from django.core.management.color import supports_color
 
 # --------------------------------------------------------------
 # 3rd Party imports
@@ -88,6 +97,8 @@ RECAPTCHA_PRIVATE_KEY = RECAPTCHA_PRIVATE_KEY
 COOKIE_BOT = COOKIE_BOT
 STRIPE_SECRET_KEY = STRIPE_SECRET_KEY
 STRIPE_PUBLISHABLE = STRIPE_PUBLISHABLE
+STRIPE_WEBHOOK_SECRET = STRIPE_WEBHOOK_SECRET
+STRIPE_WEBHOOK_KEY = STRIPE_WEBHOOK_KEY
 CELERY_BROKER_URL = CELERY_BROKER_URL
 CELERY_RESULT_BACKEND = CELERY_RESULT_BACKEND
 CELERY_ACCEPT_CONTENT = CELERY_ACCEPT_CONTENT
