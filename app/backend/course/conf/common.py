@@ -183,6 +183,8 @@ COOKIE_BOT = os.environ.get("COOKIE_BOT", None)
 # --------------------------------------------------------------
 STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET")
 STRIPE_PUBLISHABLE = os.environ.get("STRIPE_PUBLISHABLE")
+STRIPE_WEBHOOK_SECRET = os.environ.get("STRIPE_WEBHOOK_SECRET", None)
+STRIPE_WEBHOOK_KEY = os.environ.get("STRIPE_WEBHOOK_KEY", None)
 # --------------------------------------------------------------
 # END STRIPE SETTINGS
 # --------------------------------------------------------------
