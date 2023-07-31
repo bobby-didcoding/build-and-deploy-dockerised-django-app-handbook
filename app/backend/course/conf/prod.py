@@ -2,6 +2,7 @@
 # Python  imports
 # --------------------------------------------------------------
 import os
+import logging.config
 
 # --------------------------------------------------------------
 # Project imports
@@ -25,6 +26,7 @@ from .common import (
     USE_TZ,
     DEFAULT_AUTO_FIELD,
     SUSPEND_SIGNALS,
+    AUTH_USER_MODEL,
     EMAIL_BACKEND,
     EMAIL_HOST,
     EMAIL_PORT,
@@ -38,7 +40,15 @@ from .common import (
     COOKIE_BOT,
     STRIPE_SECRET_KEY,
     STRIPE_PUBLISHABLE,
+    STRIPE_WEBHOOK_SECRET,
+    STRIPE_WEBHOOK_KEY,
 )
+
+# --------------------------------------------------------------
+# Django  imports
+# --------------------------------------------------------------
+from django.utils.log import DEFAULT_LOGGING
+from django.core.management.color import supports_color
 
 # --------------------------------------------------------------
 # 3rd Party imports
@@ -67,6 +77,7 @@ USE_I18N = USE_I18N
 USE_TZ = USE_TZ
 DEFAULT_AUTO_FIELD = DEFAULT_AUTO_FIELD
 SUSPEND_SIGNALS = SUSPEND_SIGNALS
+AUTH_USER_MODEL = AUTH_USER_MODEL
 EMAIL_BACKEND = EMAIL_BACKEND
 EMAIL_HOST = EMAIL_HOST
 EMAIL_PORT = EMAIL_PORT
@@ -80,6 +91,8 @@ RECAPTCHA_PRIVATE_KEY = RECAPTCHA_PRIVATE_KEY
 COOKIE_BOT = COOKIE_BOT
 STRIPE_SECRET_KEY = STRIPE_SECRET_KEY
 STRIPE_PUBLISHABLE = STRIPE_PUBLISHABLE
+STRIPE_WEBHOOK_SECRET = STRIPE_WEBHOOK_SECRET
+STRIPE_WEBHOOK_KEY = STRIPE_WEBHOOK_KEY
 
 PRODUCTION = 1
 DEBUG = 0
