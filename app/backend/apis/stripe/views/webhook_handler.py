@@ -9,6 +9,7 @@ import logging
 # --------------------------------------------------------------
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.conf import settings
 
 
 # --------------------------------------------------------------
@@ -19,12 +20,38 @@ from apis.stripe import (
     InvoiceWebhook,
 )
 
+# --------------------------------------------------------------
+# 3rd party imports
+# --------------------------------------------------------------
+import stripe
+
+stripe.api_key = settings.STRIPE_SECRET_KEY
+
 logger = logging.getLogger(__name__)
 
 
 @csrf_exempt
 def stripe_webhooks(request):
-    # We will protect this view with a VPN
+
+    if settings.STRIPE_WEBHOOK_KEY:
+        try:
+            sig_header = request.META['HTTP_STRIPE_SIGNATURE']
+            event = None
+            payload = request.body
+            endpoint_secret = settings.STRIPE_WEBHOOK_SECRET
+            try:
+                event = stripe.Webhook.construct_event(
+                payload, sig_header, endpoint_secret
+                )
+            except ValueError as e:
+                # Invalid payload
+                return HttpResponse(status=400)
+            except stripe.error.SignatureVerificationError as e:
+                # Invalid signature
+                return HttpResponse(status=400)
+        except KeyError:
+            return HttpResponse(status=404) 
+
     if request.method == "POST":
         try:
             payload = request.body
