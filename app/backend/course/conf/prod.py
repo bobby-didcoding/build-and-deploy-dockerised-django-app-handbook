@@ -55,7 +55,7 @@ SUSPEND_SIGNALS = SUSPEND_SIGNALS
 
 PRODUCTION = 1
 DEBUG = 0
-CSRF_TRUSTED_ORIGINS = [f'http://{h}' for h in ALLOWED_HOSTS]
+CSRF_TRUSTED_ORIGINS = [f'https://{h}' for h in ALLOWED_HOSTS]
 
 # --------------------------------------------------------------
 # STATICFILES SETTINGS
