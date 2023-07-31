@@ -156,7 +156,7 @@ class SessionCreateViewTestCase(EcommerceViewTestBase):
     def test_create_session_view_post_request_with_ajax(self):
         self.client.force_login(self.user)
         response = self.client.post(
-            f"/session-create/", HTTP_X_REQUESTED_WITH="XMLHttpRequest"
+            "/session-create/", HTTP_X_REQUESTED_WITH="XMLHttpRequest"
         )
         self.assertEqual(response.status_code, 200)
 

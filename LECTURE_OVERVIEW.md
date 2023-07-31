@@ -1,30 +1,34 @@
 # <span style="color:orange">Lecture overview</span>
 
-Congratulations on reaching this crucial phase of our course! In this section, we will focus on ensuring the seamless functionality of our Django app templates by writing comprehensive view tests. View testing is a critical aspect of web development as it enables us to verify that our templates render correctly and behave as expected, guaranteeing a smooth user experience.
+Welcome to this exciting section of our course, where we'll dive into the world of task queuing and background processing by integrating Celery with our Django application. Celery is a powerful and widely used distributed task queue that enhances the performance and scalability of web applications. In this section, we'll learn how to set up and configure Celery to efficiently handle asynchronous tasks in the background, providing a smooth and responsive user experience.
 
-Introduction to View Testing: 
+Introduction to Celery: 
 
-We'll begin by understanding the significance of view testing and how it contributes to the overall quality and reliability of our Django application. You'll learn about the importance of automating tests to catch potential issues early in the development process.
+We'll start by understanding the core concepts of Celery and its role in task queuing and background processing. You'll learn why Celery is a popular choice for handling time-consuming tasks, such as sending emails, processing large data, and more.
 
-Writing Test Cases for Template Rendering: 
+Setting Up Celery in Django: 
 
-Our focus will be on creating test cases that evaluate the rendering of Django templates. We'll cover the different types of templates used in our app, such as HTML templates, email templates, and any other custom templates, ensuring that they produce the expected output.
+We'll explore the necessary steps to integrate Celery with our existing Django application. This includes installing Celery, defining the required settings, and configuring Celery to use the Redis message broker for communication between the Django app and Celery workers.
 
-Comprehensive Test Coverage: 
+Enhancing Docker Compose: 
 
-We'll strive for comprehensive test coverage by targeting all significant templates and scenarios within our application. This includes testing various user roles, edge cases, and error handling to guarantee a robust and error-free template rendering experience.
+As we delve deeper into our app's infrastructure, we'll adjust our existing Docker Compose file to include necessary components for Celery, such as Redis (as the message broker), Celery workers, Celery beat (for periodic tasks), and Flower (for monitoring Celery tasks).
 
-Test Automation and Continuous Integration: 
+Configuring Celery Beat:
 
-To streamline the testing process, we'll explore test automation techniques, allowing you to run tests effortlessly and consistently. We'll also discuss integrating tests into a continuous integration pipeline for efficient testing in a collaborative development environment.
+We'll focus on setting up Celery beat to schedule and manage periodic tasks within our Django application. This includes configuring periodic task schedules and observing how Celery beat interacts with Celery workers to execute these tasks.
 
-By the end of this section, you'll have a suite of well-structured and comprehensive view tests, ensuring that your Django app templates function flawlessly. You'll gain confidence in the reliability of your application's rendering and user interactions, making it ready for deployment to production.
+Monitoring Celery Tasks with Flower: 
 
-Remember, writing thorough view tests not only enhances the quality of your application but also saves time and effort in the long run by catching potential issues early in the development cycle. Let's dive into view testing and ensure that your Django app delivers a delightful and seamless user experience!
+To gain insights into the Celery tasks' status and performance, we'll integrate Flower, a web-based monitoring tool for Celery. You'll learn how to use Flower to monitor task progress, view statistics, and troubleshoot issues during development and production.
+
+By the end of this section, you'll have successfully integrated Celery into your Django application, empowering it to handle asynchronous tasks efficiently and scale with ease. The Docker Compose adjustments will ensure that your application's infrastructure is ready to support Celery and its related components seamlessly.
+
+Get ready to enhance your Django app's performance and responsiveness, allowing it to tackle time-consuming tasks without hindering user experience. Let's embark on the journey of integrating Celery and unleashing the true potential of your web application!
 
 # <span style="color:orange">Code changes</span>
 
-You can find all code changes [here](https://github.com/bobby-didcoding/build-and-deploy-dockerised-django-app-handbook/pull/19/files).
+You can find all code changes [here](https://github.com/bobby-didcoding/build-and-deploy-dockerised-django-app-handbook/pull/20/files).
 
 
 ***
