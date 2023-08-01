@@ -1,34 +1,30 @@
 # <span style="color:orange">Lecture overview</span>
 
-Welcome to this exciting section of our course, where we'll dive into the world of task queuing and background processing by integrating Celery with our Django application. Celery is a powerful and widely used distributed task queue that enhances the performance and scalability of web applications. In this section, we'll learn how to set up and configure Celery to efficiently handle asynchronous tasks in the background, providing a smooth and responsive user experience.
+Congratulations on reaching this pivotal section of our course! In this module, we'll dive into the practical implementation of asynchronous tasks with Celery by creating our first task: sending emails to our users. Email notification is a critical feature in most web applications, and with Celery, we can efficiently handle email sending in the background, ensuring a smooth user experience while keeping our application responsive.
 
-Introduction to Celery: 
+Introduction to Email Sending Task: 
 
-We'll start by understanding the core concepts of Celery and its role in task queuing and background processing. You'll learn why Celery is a popular choice for handling time-consuming tasks, such as sending emails, processing large data, and more.
+We'll begin by understanding the importance of asynchronous email sending and how it enhances the overall performance of our Django application. You'll learn how Celery allows us to delegate the email sending process to background tasks, reducing user wait times during the registration, password reset, or other email-related operations.
 
-Setting Up Celery in Django: 
+Creating the Celery Task Function: 
 
-We'll explore the necessary steps to integrate Celery with our existing Django application. This includes installing Celery, defining the required settings, and configuring Celery to use the Redis message broker for communication between the Django app and Celery workers.
+We'll write our first Celery task function responsible for sending emails. You'll learn how to define the task, decorate it properly, and pass necessary parameters such as the recipient's email, subject, and content.
 
-Enhancing Docker Compose: 
+Asynchronous Email Sending: 
 
-As we delve deeper into our app's infrastructure, we'll adjust our existing Docker Compose file to include necessary components for Celery, such as Redis (as the message broker), Celery workers, Celery beat (for periodic tasks), and Flower (for monitoring Celery tasks).
+With the Celery task in place, we'll execute the email sending process asynchronously in the background. You'll see how the task can be called from Django views or other parts of the application, enabling us to trigger email sending without blocking the main thread.
 
-Configuring Celery Beat:
+Monitoring Tasks: 
 
-We'll focus on setting up Celery beat to schedule and manage periodic tasks within our Django application. This includes configuring periodic task schedules and observing how Celery beat interacts with Celery workers to execute these tasks.
+We'll leverage Flower, the Celery monitoring tool, to monitor the progress and status of our email sending tasks. You'll see how Flower provides insights into task execution, errors, and overall task performance.
 
-Monitoring Celery Tasks with Flower: 
+By the end of this section, you'll have a fully functional Celery task that handles email sending efficiently in the background. You'll gain hands-on experience in integrating Celery with Django and leveraging its capabilities to streamline email-related operations.
 
-To gain insights into the Celery tasks' status and performance, we'll integrate Flower, a web-based monitoring tool for Celery. You'll learn how to use Flower to monitor task progress, view statistics, and troubleshoot issues during development and production.
-
-By the end of this section, you'll have successfully integrated Celery into your Django application, empowering it to handle asynchronous tasks efficiently and scale with ease. The Docker Compose adjustments will ensure that your application's infrastructure is ready to support Celery and its related components seamlessly.
-
-Get ready to enhance your Django app's performance and responsiveness, allowing it to tackle time-consuming tasks without hindering user experience. Let's embark on the journey of integrating Celery and unleashing the true potential of your web application!
+With asynchronous email sending in place, your application will deliver a seamless and responsive user experience, ensuring that important email notifications reach your users reliably and without delay. Let's dive into the world of asynchronous tasks and make email sending a breeze in your Django application!
 
 # <span style="color:orange">Code changes</span>
 
-You can find all code changes [here](https://github.com/bobby-didcoding/build-and-deploy-dockerised-django-app-handbook/pull/20/files).
+You can find all code changes [here](https://github.com/bobby-didcoding/build-and-deploy-dockerised-django-app-handbook/pull/21/files).
 
 
 ***
