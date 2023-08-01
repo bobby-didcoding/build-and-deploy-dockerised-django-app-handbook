@@ -1,37 +1,41 @@
 # <span style="color:orange">Lecture overview</span>
 
-Welcome to the "Creating Public Sitemaps" course section! In this module, we will focus on building sitemap classes for your Django web application that showcase views accessible to all users, without requiring authentication. Sitemaps play a crucial role in search engine optimization (SEO) by providing search engines with valuable information about the structure and organization of your website's content. By the end of this section, you will have the expertise to design and implement sitemaps that enhance the discoverability and indexing of your public, unauthenticated views, contributing to improved search engine rankings and overall website visibility.
+Welcome to the "Wiring Django Views to URLs" course section! In this final module before we embark on creating captivating HTML templates, we will focus on the essential task of connecting our Django views to specific URLs. The URL configuration plays a vital role in determining how users interact with your web application and access different functionalities. By mastering the art of URL routing and view mapping, you will establish a solid foundation for building a robust and user-friendly web application. Upon completing this section, you will be well-equipped to navigate users seamlessly through your application and ensure a smooth user experience.
 
-Understanding Sitemaps and Their Importance:
+Understanding URL Configuration in Django:
 
-Learn about sitemaps, their purpose, and their significance in enhancing SEO for your web application.
-Recognize the benefits of creating sitemaps for both users and search engines.
+Familiarize yourself with Django's URL dispatcher and its role in directing incoming requests to appropriate views.
+Learn about URL patterns, regex matching, and named URL patterns.
 
-Identifying Unauthenticated Views:
+Defining URL Patterns for Views:
 
-Identify views within your Django application that do not require user authentication to access.
-Distinguish between public and restricted views to include only the appropriate ones in your sitemap.
+Create URL patterns for each of your Django views to establish a clear and organized URL structure.
 
-Implementing Django Sitemaps Framework:
+Managing URL Namespaces:
 
-Familiarize yourself with Django's built-in sitemaps framework for generating sitemap XML files.
-Set up the necessary configurations to enable sitemap functionality in your Django project.
+Explore URL namespaces to avoid naming conflicts and enhance code maintainability.
+Organize URL patterns into namespaces for different sections of your web application.
 
-Designing Sitemap Classes for Public Views:
+Using Django's Include Functionality:
 
-Create sitemap classes tailored to showcase your public, unauthenticated views.
-Include relevant information such as URLs, last modification date, and priority levels.
+Learn how to utilize the include function to break down your URL configuration into modular and reusable components.
+Incorporate app-specific URL configurations into the main project URL configuration.
 
-Managing Dynamic Content in Sitemaps:
+Mapping Views to URLs:
 
-Handle dynamic content in your sitemaps, such as content generated from a database.
-Use methods to dynamically populate sitemap data for your unauthenticated views.
+Connect your Django views to corresponding URL patterns to ensure proper handling of user requests.
+Implement view functions and class-based views to handle various URL paths.
 
-Throughout this course section, you will work on real-world examples, creating sitemap classes and generating sitemap XML files to showcase your public, unauthenticated views. By the end of this section, you will be proficient in leveraging sitemaps to improve SEO for your web application, making your content more accessible to users and search engines alike. Let's dive into the world of sitemaps and boost the visibility of your unauthenticated views!
+URL Parameter Passing and Query Parameters:
+
+Explore methods for passing parameters in URLs and extracting them in view functions.
+Implement query parameters to enable flexible filtering and sorting options in your web application.
+
+By the end of this course section, you will have successfully wired up all your Django views to URLs, creating a clear and logical structure for users to navigate through your web application. You will be fully prepared to move on to the exciting phase of creating HTML templates, where your well-defined views and URL mappings will come to life with engaging user interfaces. Let's dive into the world of URL routing and set the stage for a seamless user experience!
 
 # <span style="color:orange">Code changes</span>
 
-You can find all code changes [here](https://github.com/bobby-didcoding/build-and-deploy-dockerised-django-app-handbook/pull/12/files).
+You can find all code changes [here](https://github.com/bobby-didcoding/build-and-deploy-dockerised-django-app-handbook/pull/13/files).
 
 
 ***
