@@ -8,6 +8,29 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.views import defaults as default_views
 from users.forms import EmailValidationOnForgotPassword
+from django.contrib.sitemaps.views import sitemap
+
+from core.sitemaps import (
+    CoreStaticViewsSitemap,
+    PolicySiteMap,
+    BlogSiteMap,
+    PortfolioSiteMap,
+)
+
+from users.sitemaps import (
+    UsersStaticViewsSitemap,
+)
+from ecommerce.sitemaps import EcommerceStaticViewsSitemap, ProductSiteMap
+
+sitemaps = {
+    "core_sitemap": CoreStaticViewsSitemap,
+    "ecommerce_sitemap": EcommerceStaticViewsSitemap,
+    "users_sitemap": UsersStaticViewsSitemap,
+    "policies": PolicySiteMap,
+    "blogs": BlogSiteMap,
+    "portfolio": PortfolioSiteMap,
+    "products": ProductSiteMap,
+}
 
 handler400 = "course.views.handler400"
 handler403 = "course.views.handler403"
@@ -39,6 +62,12 @@ urlpatterns = [
         "reset_password_complete/",
         auth_views.PasswordResetCompleteView.as_view(),
         name="password_reset_complete",
+    ),
+    path(
+        "sitemap.xml",
+        sitemap,
+        {"sitemaps": sitemaps},
+        name="django.contrib.sitemaps.views.sitemap",
     ),
 ]
 
