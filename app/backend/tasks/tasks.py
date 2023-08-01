@@ -98,7 +98,7 @@ def send_account_summary_to_support(self):
         "internal": True,
         "subject": "Course - New account summary",
         "context": {
-            "users": User.objects.active().count(),
+            "users": User.objects.filter(is_active=True).count(),
         },
         "template": "users/emails/user-summary.html",
     }
