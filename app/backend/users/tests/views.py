@@ -3,6 +3,7 @@
 # --------------------------------------------------------------
 from django.test import TestCase
 from django.test.client import Client
+from django.test.utils import override_settings
 
 # --------------------------------------------------------------
 # App imports

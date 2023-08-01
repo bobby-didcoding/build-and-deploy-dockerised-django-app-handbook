@@ -17,7 +17,7 @@ from ecommerce.models import Customer, Cart
 from ecommerce.models import Product, Price, Session
 
 
-@override_settings(SUSPEND_SIGNALS=True)
+@override_settings(SUSPEND_SIGNALS=True, LOGLEVEL="ERROR")
 class EcommerceViewTestBase(BaseTestCustomUser, TestCase):
     def setUp(self):
         self.user = self.get_test_active_user()

@@ -3,6 +3,7 @@
 # --------------------------------------------------------------
 from django.test import TestCase
 from django.test.client import Client
+from django.test.utils import override_settings
 
 # --------------------------------------------------------------
 # App imports
@@ -17,7 +18,7 @@ class CoreViewTestBase:
         self.portfolio = Portfolio.objects.create(title="Test portfolio")
         self.policy = Policy.objects.create(title="Test policy")
 
-
+@override_settings(LOGLEVEL="ERROR")
 class HomeViewTestCase(CoreViewTestBase, TestCase):
     """
     Test suite for HomeView
@@ -47,7 +48,7 @@ class HomeViewTestCase(CoreViewTestBase, TestCase):
 
         self.assertEqual(response.status_code, 405)
 
-
+@override_settings(LOGLEVEL="ERROR")
 class BlogsViewTestCase(CoreViewTestBase, TestCase):
     """
     Test suite for BlogsView
@@ -78,6 +79,7 @@ class BlogsViewTestCase(CoreViewTestBase, TestCase):
         self.assertEqual(response.status_code, 405)
 
 
+@override_settings(LOGLEVEL="ERROR")
 class BlogViewTestCase(CoreViewTestBase, TestCase):
     """
     Test suite for BlogView
@@ -108,6 +110,7 @@ class BlogViewTestCase(CoreViewTestBase, TestCase):
         self.assertEqual(response.status_code, 405)
 
 
+@override_settings(LOGLEVEL="ERROR")
 class PoliciesViewTestCase(CoreViewTestBase, TestCase):
     """
     Test suite for PoliciesView
