@@ -1,0 +1,129 @@
+
+{% load static cache %}
+<!doctype html>
+<html lang="en">
+<head>
+
+
+    <!-- Production scripts -->
+    {% if production %}
+        {% include 'base/includes/cookie_bot.html' %}
+    {% endif %}
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/icon.jpg' %}">
+    <link rel="apple-touch-icon" type="image/jpg" href="{% static 'images/icon.jpg' %}">
+
+    <!-- ================================
+        START SEO BLOCKS
+    ================================= -->
+    <title>{% block page_title %}{% endblock %}</title>
+    <meta name="author" content="Did Coding Limited">
+    <link rel="canonical" href="{{request.path}}"/>
+    <link rel="home" href="{% url 'core:home' %}"/>
+    <meta name="description" content="{% block description %}{% endblock %}">
+    <meta name="keywords" content="{% block keywords %}{% endblock %}">
+    {% block schema %}{% endblock %}
+    <!-- ================================
+        END START SEO BLOCKS
+    ================================= -->
+
+    <!-- ================================
+        START CSS BLOCKS
+    ================================= -->
+    {% cache None head_imports %}
+
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/swiper-bundle.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/toastr.css' %}" type="text/css">
+    
+    {% endcache %}
+    
+    <!-- Recaptcha -->
+    <script type="text/javascript">
+    var recaptcha_site_key = '{{recaptcha_site_key|safe}}'
+    var cookie_bot = '{{cookie_bot|safe}}'
+    </script>
+    <script src='https://www.google.com/recaptcha/api.js?render={{recaptcha_site_key}}'></script>
+    <style>
+        .grecaptcha-badge { 
+            bottom:75px !important; 
+            z-index: 110;
+        }
+    </style>
+    
+    {% block extend_header %}{% endblock %}
+    <!-- ================================
+        END CSS BLOCKS
+    ================================= -->
+
+</head> 
+
+<body class="sticky-header">
+    <a href="#top" class="back-to-top" id="backto-top"><i class="fal fa-arrow-up"></i></a>
+
+<!-- ================================
+	START CONTENT BLOCKS
+================================= -->
+
+
+<!-- ================================
+Start Navigation Bar
+================================= -->
+{% include 'base/includes/header.html' %}
+<!-- ================================
+End Navigation Bar
+================================= -->
+
+<!-- ================================
+Start Content
+================================= -->
+{% block content %}{% endblock %}
+<!-- ================================
+End Content
+================================= -->
+
+<!-- ================================
+Start Footer
+================================= -->
+{% include 'base/includes/footer.html' %}
+<!-- ================================
+End Footer
+================================= -->
+
+
+<!-- ================================
+	END CONTENT BLOCKS
+================================= -->
+{% cache None foot_imports %}
+<!-- ================================
+	START Base SCRIPTS
+================================= -->
+<script src="{% static 'js/global.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/swiper-bundle.min.js' %}"></script>
+<script src="{% static 'js/script.js' %}"></script>
+
+<script src="{% static 'js/toastr.js' %}"></script>
+<script src="{% static 'js/alert.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+
+
+{% endcache %}
+{% block extend_footer %} {% endblock %}
+
+{% include 'base/includes/messages.html' %}
+<!-- ================================
+	End Base scripts
+================================= -->
+
+
+
+</body>
+</html>

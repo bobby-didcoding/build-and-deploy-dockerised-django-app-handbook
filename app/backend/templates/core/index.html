@@ -1,0 +1,403 @@
+{% extends 'base/base.html' %}
+{% load static cache %}
+
+<!-- ================================
+    START SEO BLOCKS
+================================= -->
+{% block page_title %}
+{% endblock %}
+
+{% block keywords %}
+{% endblock %}
+
+{% block description %}
+{% endblock %}
+
+{% block schema %}
+{% endblock %}
+<!-- ================================
+    END SEO BLOCKS AREA
+================================= -->
+
+<!-- ================================
+    START HEADER SECTION
+================================= -->
+{% block extend_header %}
+{% endblock %}
+<!-- ================================
+    END HEADER SECTION
+================================= -->
+
+<!-- ================================
+    START MODAL SECTION
+================================= -->
+{% block modal %}
+{% endblock %}
+<!-- ================================
+    END MODAL SECTION
+================================= -->
+
+<!-- ================================
+    START FOOTER SECTION
+================================= -->
+
+{% block extend_footer %}
+{% endblock %}
+
+<!-- ================================
+    END FOOTER SECTION
+================================= -->
+
+<!-- ================================
+    START CONTENT SECTION
+================================= -->
+{% block content %}
+
+<section>
+    <div class="bannerSection">
+        <div class="container">
+        <div class="row g-4 g-md-3  align-items-center">
+            <div class="col-md-auto order-md-last">
+            <div class="bannerUserImg">
+                <img src="{% static 'images/user-img.jpg' %}" alt="...">
+            </div>
+            </div>
+            <div class="col-md">
+            <div class="bannerContent">
+                <h1 class="xlTitle pb-3">Hi, I’m Bobby, <br> a back-end Developer</h1>
+                <p>I am a seasoned software engineer with a wealth of experience spanning a decade. With a deep-rooted passion for technological advancements, I have dedicated my career to developing cutting-edge solutions. Over the past two years, I have been focused on harnessing the power of the Hedera Network, immersing myself in its intricacies and unlocking its immense potential.</p>
+                <div class="bannerBtnCol">
+                <div class="row">
+                    {% comment %} <div class="col-auto">
+                    <a download href="javascript:void(0)" class="btn btnPrimary">Download Resume</a>
+                    </div> {% endcomment %}
+                    <div class="col-auto">
+                    <a href="{% url 'core:contact' %}" class="btn btnOutline">Contact</a>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="sectionSpace pt-0">
+        <div class="container">
+        <div class="row">
+            <div class="col-md-auto">
+            <div class="keySkillCol">
+                <h4 class="smTitle pb-3">Key Skills</h4>
+                <div class="keySkillCard">
+                <div class="ksIconCol">
+                    <img src="{% static 'images/key-skill-icon-1.svg' %}" alt="...">
+                </div>
+                <span class="ksText">Key Skill 1</span>
+                </div>
+                <div class="keySkillCard">
+                <div class="ksIconCol">
+                    <img src="{% static 'images/key-skill-icon-2.svg' %}" alt="...">
+                </div>
+                <span class="ksText">Key Skill 2</span>
+                </div>
+                <div class="keySkillCard">
+                <div class="ksIconCol">
+                    <img src="{% static 'images/key-skill-icon-3.svg' %}" alt="...">
+                </div>
+                <span class="ksText">Key Skill 3</span>
+                </div>
+            </div>
+            </div>
+            <div class="col-md">
+            <h4 class="smTitle pb-3">Coding Skills</h4>
+            <div class="progressCol">
+                <div class="progressCard">
+                <div class="progressCol">
+                    <span class="progressLbl">Key Skill 1</span>
+                    <div class="row g-2 align-items-center">
+                    <div class="col">
+                        <div class="progress progressStyle">
+                        <div class="progress-bar" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <span class="pLbl">95%</span>
+                    </div>
+                    </div>
+                </div>
+                <div class="progressCol">
+                    <span class="progressLbl">Key Skill 2</span>
+                    <div class="row g-2 align-items-center">
+                    <div class="col">
+                        <div class="progress progressStyle">
+                        <div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <span class="pLbl">85%</span>
+                    </div>
+                    </div>
+                </div>
+                <div class="progressCol">
+                    <span class="progressLbl">Key Skill 3</span>
+                    <div class="row g-2 align-items-center">
+                    <div class="col">
+                        <div class="progress progressStyle">
+                        <div class="progress-bar" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <span class="pLbl">70%</span>
+                    </div>
+                    </div>
+                </div>
+                <div class="progressCol">
+                    <span class="progressLbl">Key Skill 4</span>
+                    <div class="row g-2 align-items-center">
+                    <div class="col">
+                        <div class="progress progressStyle">
+                        <div class="progress-bar" role="progressbar" style="width: 65%" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                    <div class="col-auto">
+                        <span class="pLbl">65%</span>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+</section>
+
+<section>
+<div class="sectionSpaceSm lightBg">
+    <div class="container">
+    <div class="row pb-3">
+        <div class="col">
+        <h4 class="smText regular">Certificates</h4>
+        </div>
+        <div class="col-auto">
+        <a href="javascript:void(0)" class="simpleLink">View all</a>
+        </div>
+    </div>
+    <div class="sliderOuter">
+        <div class="swiper certificatesSlider">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+            <div class="cardStyle1">
+                <h4 class="mdTitle cs1Title">
+                <a href="javascript:void(0)">HTML, CSS, and Javascript for Web Developers</a>
+                </h4>
+                <ul class="cardOptionCol">
+                <li>08 Oct 2021</li>
+                <li>Coursera</li>
+                </ul>
+                <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>
+            </div>
+            </div>
+            <div class="swiper-slide">
+            <div class="cardStyle1">
+                <h4 class="mdTitle cs1Title">
+                <a href="javascript:void(0)">IBM Full Stack Cloud Developer</a>
+                </h4>
+                <ul class="cardOptionCol">
+                <li>08 Oct 2021</li>
+                <li>Coursera</li>
+                </ul>
+                <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>
+            </div>
+            </div>
+            <div class="swiper-slide">
+            <div class="cardStyle1">
+                <h4 class="mdTitle cs1Title">
+                <a href="javascript:void(0)">IBM Full Stack Cloud Developer</a>
+                </h4>
+                <ul class="cardOptionCol">
+                <li>08 Oct 2021</li>
+                <li>Coursera</li>
+                </ul>
+                <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>
+            </div>
+            </div>
+        </div>
+        </div>            
+        <div class="cert-swiper-button-next swiper-button-next swiperBtnStyle"></div>
+        <div class="cert-swiper-button-prev swiper-button-prev swiperBtnStyle"></div>
+        <div class="swiper-pagination swiperPaginationStyle posInitial"></div>
+    </div>
+    </div>
+</div>
+</section>
+
+<section>
+<div class="sectionSpace">
+    <div class="container">
+    <div class="portfolioCol">
+        <div class="row pb-3">
+        <div class="col">
+            <h4 class="smText regular">Featured Work</h4>
+        </div>
+        <div class="col-auto">
+            <a href="javascript:void(0)" class="simpleLink">View all</a>
+        </div>
+        </div>
+        <div class="portfolioCard">
+        <div class="row g-4 align-items-center">
+            <div class="col-md-auto">
+            <div class="portfolioImgCol">
+                <a href="javascript:void(0)"><img src="{% static 'images/work-img.jpg' %}" alt="..."></a>
+            </div>
+            </div>
+            <div class="col-md">
+            <div class="portfolioContentCol">
+                <h4 class="lgTitle"><a href="javascript:void(0)">Portfolio option 1</a></h4>
+                <ul class="portfolioOption">
+                <li><span class="dateLbl">2021</span></li>
+                </ul>
+                <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>
+            </div>
+            </div>
+        </div>
+        </div>
+        <div class="portfolioCard">
+        <div class="row g-4 align-items-center">
+            <div class="col-md-auto">
+            <div class="portfolioImgCol">
+                <a href="javascript:void(0)"><img src="{% static 'images/work-img.jpg' %}" alt="..."></a>
+            </div>
+            </div>
+            <div class="col-md">
+            <div class="portfolioContentCol">
+                <h4 class="lgTitle"><a href="javascript:void(0)">Portfolio option 2</a></h4>
+                <ul class="portfolioOption">
+                <li><span class="dateLbl">2021</span></li>
+                <li>Django</li>
+                </ul>
+                <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>
+            </div>
+            </div>
+        </div>
+        </div>
+        <div class="portfolioCard">
+        <div class="row g-4 align-items-center">
+            <div class="col-md-auto">
+            <div class="portfolioImgCol">
+                <a href="javascript:void(0)"><img src="{% static 'images/work-img.jpg' %}" alt="..."></a>
+            </div>
+            </div>
+            <div class="col-md">
+            <div class="portfolioContentCol">
+                <h4 class="lgTitle"><a href="javascript:void(0)">Portfolio option 3</a></h4>
+                <ul class="portfolioOption">
+                <li><span class="dateLbl">2021</span></li>
+                <li>Marketplace</li>
+                </ul>
+                <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="testimonialCol">
+        <h4 class="smText regular d-block">Testimonials</h4>
+        <div class="testimonialSlider">
+        <div class="swiper testimonialSwiper">
+            <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="testimonialCard">
+                <div class="row align-items-center">
+                    <div class="col-sm-auto">
+                    <div class="tImgCol">
+                        <img src="{% static 'images/user-thumb.jpg' %}" alt="...">
+                    </div>
+                    </div>
+                    <div class="col-sm">
+                    <div class="tContentCol">
+                        <h4 class="xsTitle bold">Amazing to work with!</h4>
+                        <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.</p>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="testimonialCard">
+                <div class="row align-items-center">
+                    <div class="col-sm-auto">
+                    <div class="tImgCol">
+                        <img src="{% static 'images/user-thumb.jpg' %}" alt="...">
+                    </div>
+                    </div>
+                    <div class="col-sm">
+                    <div class="tContentCol">
+                        <h4 class="xsTitle bold">Amazing to work with!</h4>
+                        <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.</p>
+                    </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+            <div class="test-swiper-button-next swiper-button-next swiperBtnStyle"></div>
+            <div class="test-swiper-button-prev swiper-button-prev swiperBtnStyle"></div>
+        </div>
+
+
+        </div>
+    </div>
+    </div>
+</div>
+</section>
+
+<section>
+<div class="sectionSpaceSm lightBg">
+    <div class="container">
+    <div class="row pb-3">
+        <div class="col">
+        <h4 class="smText regular">Recent posts</h4>
+        </div>
+        <div class="col-auto">
+        <a href="javascript:void(0)" class="simpleLink">View all</a>
+        </div>
+    </div>
+    <div class="row g-3">
+        <div class="col-lg-6">
+        <div class="cardStyle1">
+            <h4 class="mdTitle cs1Title"><a href="javascript:void(0)">How to implement Django into your project</a></h4>
+            <ul class="cardOptionCol">
+            <li>08 Oct 2021</li>
+            <li>Django</li>
+            </ul>
+            <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>
+        </div>
+        </div>
+        <div class="col-lg-6">
+        <div class="cardStyle1">
+            <h4 class="mdTitle cs1Title"><a href="javascript:void(0)">Using code to structure your marketplace</a></h4>
+            <ul class="cardOptionCol">
+            <li>08 Oct 2021</li>
+            <li>Django</li>
+            </ul>
+            <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>
+        </div>
+        </div>
+    </div>
+    </div>
+</div>
+</section>
+
+{% endblock %}
+<!-- ================================
+    END CONTENT SECTION
+================================= -->
+
+
+
+
+
+

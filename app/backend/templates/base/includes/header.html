@@ -1,0 +1,38 @@
+{% load static %}
+
+<header>
+    <div class="headerCol">
+      <div class="container-fluid">
+        <div class="row align-items-center">
+          <div class="col-auto">
+            <div class="logoCol"><a href="{% url 'core:home' %}"><img src="{% static 'images/logo.png' %}" alt="..."></a></div>
+          </div>
+          <div class="col">
+            <div class="d-md-none">
+              <button class="navToggle">
+                <span class="navToggle__text">Toggle Menu</span>
+              </button>
+            </div>
+            <div class="navCollapseCol">
+              <div class="navCol">
+                <ul>
+                  <li><a href="{% url 'core:home' %}">Home</a></li>
+                  <li><a href="{% url 'core:portfolio' %}">Portfolio</a></li>
+                  <li><a href="{% url 'core:blog' %}">Blog</a></li>
+                  <li><a href="{% url 'core:contact' %}">Contact</a></li>
+                  <li><a href="{% url 'core:policies' %}">Policies</a></li>
+                  <li><a href="{% url 'ecommerce:products' %}">Shop</a></li>
+                  {% if  not request.user.is_authenticated %}
+                  <li><a href="{% url 'users:signup' %}">Sign-up</a></li>
+                  {% else %}
+                  <li><a href="{% url 'users:logout' %}">Logout</a></li>
+                  <li><a href="{% url 'ecommerce:cart' %}">Cart</a></li>
+                  {% endif %}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
