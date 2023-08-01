@@ -1,0 +1,23 @@
+{% extends 'base/email_base.html' %}
+{% load static %}
+
+<!-- ================================
+    START CONTENT SECTION
+================================= -->
+
+{% block content %}
+
+<h4 style="text-align:left;font-weight: 700;font-family:'Poppins',sans-serif;font-size:20px;color:#152536;line-height:30px; margin:0;">Hello</h4> 
+<div class="space16" style="height:16px;"></div>
+<p style="text-align:left;font-family:'Poppins',sans-serif;font-size:16px;margin:0;color:#6C757D;line-height:24px;">Here is you latest invoice
+<div class="space32" style="height:32px;"></div>
+<div class="textCenterMobile" style="font-family:'Poppins',sans-serif;color:#fff;">
+<a href="{{invoice_url}}" target="_blank" style="background: #f9b000;width:100%;font-size:14px;color:#9c07b6;font-weight:600!important;text-align:center;line-height:44px;display:block;border-radius:6px;text-transform:uppercase;">View invoice</a>
+</div>
+<div class="space16" style="height:16px;"></div>
+<p style="font-family:'Poppins',sans-serif;font-size:12px;margin:0;color:#6C757D;line-height:22px;">Questions? Email us at: <a href="mailto:{{support_email}}" style="color:#f9b000;display:inline-block;text-decoration:none;">{{support_email}}</a></p>
+{% endblock %}
+
+<!-- ================================
+    END CONTENT SECTION
+================================= -->

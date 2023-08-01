@@ -69,6 +69,7 @@ class SignUpView(AjaxFormMixin, generic.FormView):
                 "url_safe": url_safe,
                 "domain": f"{protocol}{current_site}",
                 "support_email": settings.EMAIL_HOST_USER,
+                "subject": "Activate your account",
             }
 
             html_content = render_to_string(
