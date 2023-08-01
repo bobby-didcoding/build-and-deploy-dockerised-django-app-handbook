@@ -19,8 +19,8 @@ class CoreStaticViewsSitemap(sitemaps.Sitemap):
             "core:home",
             "core:contact",
             "core:policies",
-            "core:blogs",
-            "core:portfolios",
+            "core:blog",
+            "core:portfolio",
         ]
 
     def location(self, item):
