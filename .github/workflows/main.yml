@@ -1,0 +1,369 @@
+name: Continuous Integration and Delivery
+
+on: [push]
+
+env:
+    STAGE_REDIS_IMAGE: ghcr.io/$(echo $GITHUB_REPOSITORY | tr '[:upper:]' '[:lower:]')/stage_redis
+    STAGE_NGINX_IMAGE: ghcr.io/$(echo $GITHUB_REPOSITORY | tr '[:upper:]' '[:lower:]')/stage_nginx
+    STAGE_APP_IMAGE: ghcr.io/$(echo $GITHUB_REPOSITORY | tr '[:upper:]' '[:lower:]')/stage_app
+    STAGE_CELERY_IMAGE: ghcr.io/$(echo $GITHUB_REPOSITORY | tr '[:upper:]' '[:lower:]')/stage_celery
+    STAGE_BEAT_IMAGE: ghcr.io/$(echo $GITHUB_REPOSITORY | tr '[:upper:]' '[:lower:]')/stage_beat
+    STAGE_DB_IMAGE: ghcr.io/$(echo $GITHUB_REPOSITORY | tr '[:upper:]' '[:lower:]')/stage_db
+    STAGE_STRIPE_IMAGE: ghcr.io/$(echo $GITHUB_REPOSITORY | tr '[:upper:]' '[:lower:]')/stage_stripe
+    PROD_REDIS_IMAGE: ghcr.io/$(echo $GITHUB_REPOSITORY | tr '[:upper:]' '[:lower:]')/prod_redis
+    PROD_NGINX_IMAGE: ghcr.io/$(echo $GITHUB_REPOSITORY | tr '[:upper:]' '[:lower:]')/prod_nginx
+    PROD_APP_IMAGE: ghcr.io/$(echo $GITHUB_REPOSITORY | tr '[:upper:]' '[:lower:]')/prod_app
+    PROD_CELERY_IMAGE: ghcr.io/$(echo $GITHUB_REPOSITORY | tr '[:upper:]' '[:lower:]')/prod_celery
+    PROD_BEAT_IMAGE: ghcr.io/$(echo $GITHUB_REPOSITORY | tr '[:upper:]' '[:lower:]')/prod_beat
+    PROD_DB_IMAGE: ghcr.io/$(echo $GITHUB_REPOSITORY | tr '[:upper:]' '[:lower:]')/prod_db
+    PROD_STRIPE_IMAGE: ghcr.io/$(echo $GITHUB_REPOSITORY | tr '[:upper:]' '[:lower:]')/prod_stripe
+
+jobs:
+
+    build-staging:
+        name: Build Docker Images
+        runs-on: ubuntu-latest
+        if: github.ref == 'refs/heads/stage'
+        steps:
+          - name: Checkout master
+            uses: actions/checkout@v1
+          - name: Add environment variables to .env
+            run: |
+                echo CELERY_BROKER=${{ secrets.CELERY_BROKER }} >> .env
+                echo CELERY_BACKEND=${{ secrets.CELERY_BACKEND }} >> .env
+                echo NAMESPACE=${{ secrets.NAMESPACE }} >> .env
+                echo SECRET_KEY=${{ secrets.STAGE_SECRET_KEY }} >> .env
+                echo SUPPORT_EMAIL=${{ secrets.STAGE_SUPPORT_EMAIL }} >> .env
+                echo DONOT_REPLY_EMAIL=${{ secrets.STAGE_EMAIL_ADDRESS }} >> .env
+                echo EMAIL_PASSWORD=${{ secrets.STAGE_EMAIL_PASSWORD }} >> .env
+                echo EMAIL_HOST=${{ secrets.STAGE_EMAIL_HOST }} >> .env
+                echo EMAIL_PORT=${{ secrets.STAGE_EMAIL_PORT }} >> .env
+                echo EMAIL_USE_TLS=${{ secrets.STAGE_EMAIL_USE_TLS }} >> .env
+                echo EMAIL_DISPLAY_NAME=${{ secrets.STAGE_EMAIL_DISPLAY_NAME }} >> .env
+                echo DJANGO_ALLOWED_HOSTS=${{ secrets.STAGE_DJANGO_ALLOWED_HOSTS }} >> .env
+                echo DB_ENGINE=${{ secrets.STAGE_DB_ENGINE }} >> .env
+                echo DB_USER=${{ secrets.STAGE_DB_USER }} >> .env
+                echo DB_PASSWORD=${{ secrets.STAGE_DB_PASSWORD }} >> .env
+                echo DB_HOST=${{ secrets.STAGE_DB_HOST }} >> .env
+                echo DB_NAME=${{ secrets.STAGE_DB_NAME }} >> .env
+                echo DB_PORT=${{ secrets.STAGE_DB_PORT }} >> .env
+                echo DOCKER_CONTAINER_EMAIL=${{ secrets.STAGE_DOCKER_CONTAINER_EMAIL }} >> .env
+                echo DOCKER_CONTAINER_PASSWORD=${{ secrets.STAGE_DOCKER_CONTAINER_PASSWORD }} >> .env
+                echo AWS_ACCESS_KEY_ID=${{ secrets.STAGE_AWS_ACCESS_KEY_ID }} >> .env
+                echo AWS_SECRET_ACCESS_KEY=${{ secrets.STAGE_AWS_SECRET_ACCESS_KEY }} >> .env
+                echo AWS_STORAGE_BUCKET_NAME=${{ secrets.STAGE_AWS_STORAGE_BUCKET_NAME }} >> .env
+                echo AWS_S3_ENDPOINT_URL=${{ secrets.STAGE_AWS_S3_ENDPOINT_URL }} >> .env
+                echo AWS_LOCATION=${{ secrets.STAGE_AWS_LOCATION }} >> .env
+                echo AWS_MEDIA_LOCATION=${{ secrets.STAGE_AWS_MEDIA_LOCATION }} >> .env
+                echo RECAPTCHA_PUBLIC_KEY=${{ secrets.STAGE_RECAPTCHA_PUBLIC_KEY }} >> .env
+                echo RECAPTCHA_PRIVATE_KEY=${{ secrets.STAGE_RECAPTCHA_PRIVATE_KEY }} >> .env
+                echo STRIPE_PUBLISHABLE=${{ secrets.STAGE_STRIPE_PUBLISHABLE }} >> .env
+                echo STRIPE_SECRET=${{ secrets.STAGE_STRIPE_SECRET }} >> .env
+                echo COOKIE_BOT=${{ secrets.STAGE_COOKIE_BOT }} >> .env
+                echo REDIS_PASSWORD=${{ secrets.STAGE_REDIS_PASSWORD }} >> .env
+                echo SENTRY_DNS=${{ secrets.STAGE_SENTRY_DNS }} >> .env
+
+          - name: Set environment variables
+            run: |
+                echo "STAGE_REDIS_IMAGE=$(echo ${{env.STAGE_REDIS_IMAGE}} )" >> $GITHUB_ENV
+                echo "STAGE_NGINX_IMAGE=$(echo ${{env.STAGE_NGINX_IMAGE}} )" >> $GITHUB_ENV
+                echo "STAGE_APP_IMAGE=$(echo ${{env.STAGE_APP_IMAGE}} )" >> $GITHUB_ENV
+                echo "STAGE_CELERY_IMAGE=$(echo ${{env.STAGE_CELERY_IMAGE}} )" >> $GITHUB_ENV
+                echo "STAGE_BEAT_IMAGE=$(echo ${{env.STAGE_BEAT_IMAGE}} )" >> $GITHUB_ENV
+                echo "STAGE_DB_IMAGE=$(echo ${{env.STAGE_DB_IMAGE}} )" >> $GITHUB_ENV
+                echo "STAGE_STRIPE_IMAGE=$(echo ${{env.STAGE_STRIPE_IMAGE}} )" >> $GITHUB_ENV
+
+
+          - name: Log in to GitHub Packages
+            run: echo ${PERSONAL_ACCESS_TOKEN} | docker login ghcr.io -u ${{ secrets.NAMESPACE }} --password-stdin
+            env:
+              PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          - name: Pull images
+            run: |
+                docker pull ${{ env.STAGE_REDIS_IMAGE }} || true
+                docker pull ${{ env.STAGE_NGINX_IMAGE }} || true
+                docker pull ${{ env.STAGE_DB_IMAGE }} || true
+                docker pull ${{ env.STAGE_APP_IMAGE }} || true
+                docker pull ${{ env.STAGE_CELERY_IMAGE }} || true
+                docker pull ${{ env.STAGE_BEAT_IMAGE }} || true
+                docker pull ${{ env.STAGE_STRIPE_IMAGE }} || true
+          - name: Build stage images
+            run: |
+                docker-compose -f docker-compose.stage.cicd.yml build
+          - name: Push images
+            run: |
+                docker push ${{ env.STAGE_REDIS_IMAGE }}
+                docker push ${{ env.STAGE_NGINX_IMAGE }}
+                docker push ${{ env.STAGE_APP_IMAGE }}
+                docker push ${{ env.STAGE_CELERY_IMAGE }}
+                docker push ${{ env.STAGE_BEAT_IMAGE }}
+                docker push ${{ env.STAGE_DB_IMAGE }}
+                docker push ${{ env.STAGE_STRIPE_IMAGE }}
+    
+    build-production:
+      name: Build Docker Images
+      runs-on: ubuntu-latest
+      if: github.ref == 'refs/heads/prod'
+      steps:
+        - name: Checkout master
+          uses: actions/checkout@v1
+        - name: Add environment variables to .env
+          run: |
+              echo CELERY_BROKER=${{ secrets.CELERY_BROKER }} >> .env
+              echo CELERY_BACKEND=${{ secrets.CELERY_BACKEND }} >> .env
+              echo NAMESPACE=${{ secrets.NAMESPACE }} >> .env
+              echo SECRET_KEY=${{ secrets.PROD_SECRET_KEY }} >> .env
+              echo SUPPORT_EMAIL=${{ secrets.PROD_SUPPORT_EMAIL }} >> .env
+              echo DONOT_REPLY_EMAIL=${{ secrets.PROD_EMAIL_ADDRESS }} >> .env
+              echo EMAIL_PASSWORD=${{ secrets.PROD_EMAIL_PASSWORD }} >> .env
+              echo EMAIL_HOST=${{ secrets.PROD_EMAIL_HOST }} >> .env
+              echo EMAIL_PORT=${{ secrets.PROD_EMAIL_PORT }} >> .env
+              echo EMAIL_USE_TLS=${{ secrets.PROD_EMAIL_USE_TLS }} >> .env
+              echo EMAIL_DISPLAY_NAME=${{ secrets.PROD_EMAIL_DISPLAY_NAME }} >> .env
+              echo DJANGO_ALLOWED_HOSTS=${{ secrets.PROD_DJANGO_ALLOWED_HOSTS }} >> .env
+              echo DB_ENGINE=${{ secrets.PROD_DB_ENGINE }} >> .env
+              echo DB_USER=${{ secrets.PROD_DB_USER }} >> .env
+              echo DB_PASSWORD=${{ secrets.PROD_DB_PASSWORD }} >> .env
+              echo DB_HOST=${{ secrets.PROD_DB_HOST }} >> .env
+              echo DB_NAME=${{ secrets.PROD_DB_NAME }} >> .env
+              echo DB_PORT=${{ secrets.PROD_DB_PORT }} >> .env
+              echo DOCKER_CONTAINER_EMAIL=${{ secrets.PROD_DOCKER_CONTAINER_EMAIL }} >> .env
+              echo DOCKER_CONTAINER_PASSWORD=${{ secrets.PROD_DOCKER_CONTAINER_PASSWORD }} >> .env
+              echo AWS_ACCESS_KEY_ID=${{ secrets.PROD_AWS_ACCESS_KEY_ID }} >> .env
+              echo AWS_SECRET_ACCESS_KEY=${{ secrets.PROD_AWS_SECRET_ACCESS_KEY }} >> .env
+              echo AWS_STORAGE_BUCKET_NAME=${{ secrets.PROD_AWS_STORAGE_BUCKET_NAME }} >> .env
+              echo AWS_S3_ENDPOINT_URL=${{ secrets.PROD_AWS_S3_ENDPOINT_URL }} >> .env
+              echo AWS_LOCATION=${{ secrets.PROD_AWS_LOCATION }} >> .env
+              echo AWS_MEDIA_LOCATION=${{ secrets.PROD_AWS_MEDIA_LOCATION }} >> .env
+              echo RECAPTCHA_PUBLIC_KEY=${{ secrets.PROD_RECAPTCHA_PUBLIC_KEY }} >> .env
+              echo RECAPTCHA_PRIVATE_KEY=${{ secrets.PROD_RECAPTCHA_PRIVATE_KEY }} >> .env
+              echo STRIPE_PUBLISHABLE=${{ secrets.PROD_STRIPE_PUBLISHABLE }} >> .env
+              echo STRIPE_SECRET=${{ secrets.PROD_STRIPE_SECRET }} >> .env
+              echo COOKIE_BOT=${{ secrets.PROD_COOKIE_BOT }} >> .env
+              echo REDIS_PASSWORD=${{ secrets.PROD_REDIS_PASSWORD }} >> .env
+              echo SENTRY_DNS=${{ secrets.PROD_SENTRY_DNS }} >> .env
+              echo STRIPE_WEBHOOK_KEY=${{ secrets.PROD_STRIPE_WEBHOOK_KEY }} >> .env
+              echo STRIPE_WEBHOOK_SECRET=${{ secrets.PROD_WEBHOOK_SECRET }} >> .env
+
+        - name: Set environment variables
+          run: |
+
+              echo "PROD_REDIS_IMAGE=$(echo ${{env.PROD_REDIS_IMAGE}} )" >> $GITHUB_ENV
+              echo "PROD_NGINX_IMAGE=$(echo ${{env.PROD_NGINX_IMAGE}} )" >> $GITHUB_ENV
+              echo "PROD_APP_IMAGE=$(echo ${{env.PROD_APP_IMAGE}} )" >> $GITHUB_ENV
+              echo "PROD_CELERY_IMAGE=$(echo ${{env.PROD_CELERY_IMAGE}} )" >> $GITHUB_ENV
+              echo "PROD_BEAT_IMAGE=$(echo ${{env.PROD_BEAT_IMAGE}} )" >> $GITHUB_ENV
+              echo "PROD_DB_IMAGE=$(echo ${{env.PROD_DB_IMAGE}} )" >> $GITHUB_ENV
+              echo "PROD_STRIPE_IMAGE=$(echo ${{env.PROD_STRIPE_IMAGE}} )" >> $GITHUB_ENV
+
+        - name: Log in to GitHub Packages
+          run: echo ${PERSONAL_ACCESS_TOKEN} | docker login ghcr.io -u ${{ secrets.NAMESPACE }} --password-stdin
+          env:
+            PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        - name: Pull images
+          run: |
+              docker pull ${{ env.PROD_REDIS_IMAGE }} || true
+              docker pull ${{ env.PROD_NGINX_IMAGE }} || true
+              docker pull ${{ env.PROD_DB_IMAGE }} || true
+              docker pull ${{ env.PROD_APP_IMAGE }} || true
+              docker pull ${{ env.PROD_CELERY_IMAGE }} || true
+              docker pull ${{ env.PROD_BEAT_IMAGE }} || true
+              docker pull ${{ env.PROD_STRIPE_IMAGE }} || true
+
+        - name: Build production images
+          run: |
+              docker-compose -f docker-compose.prod.cicd.yml build
+        - name: Push images
+          run: |
+              docker push ${{ env.PROD_REDIS_IMAGE }}
+              docker push ${{ env.PROD_NGINX_IMAGE }}
+              docker push ${{ env.PROD_APP_IMAGE }}
+              docker push ${{ env.PROD_CELERY_IMAGE }}
+              docker push ${{ env.PROD_BEAT_IMAGE }}
+              docker push ${{ env.PROD_DB_IMAGE }}
+              docker push ${{ env.PROD_STRIPE_IMAGE }}
+
+    staging:
+        name: Deploy to DigitalOcean Stage
+        runs-on: ubuntu-latest
+        needs: build-staging
+
+        if: github.ref == 'refs/heads/stage'
+        steps:
+          - name: Checkout master
+            uses: actions/checkout@v1
+          - name: Add environment variables to .env
+            run: |
+                echo CELERY_BROKER=${{ secrets.CELERY_BROKER }} >> .env
+                echo CELERY_BACKEND=${{ secrets.CELERY_BACKEND }} >> .env
+                echo NAMESPACE=${{ secrets.NAMESPACE }} >> .env
+                echo SECRET_KEY=${{ secrets.STAGE_SECRET_KEY }} >> .env
+                echo SUPPORT_EMAIL=${{ secrets.STAGE_SUPPORT_EMAIL }} >> .env
+                echo DONOT_REPLY_EMAIL=${{ secrets.STAGE_EMAIL_ADDRESS }} >> .env
+                echo EMAIL_PASSWORD=${{ secrets.STAGE_EMAIL_PASSWORD }} >> .env
+                echo EMAIL_HOST=${{ secrets.STAGE_EMAIL_HOST }} >> .env
+                echo EMAIL_PORT=${{ secrets.STAGE_EMAIL_PORT }} >> .env
+                echo EMAIL_USE_TLS=${{ secrets.STAGE_EMAIL_USE_TLS }} >> .env
+                echo EMAIL_DISPLAY_NAME=${{ secrets.STAGE_EMAIL_DISPLAY_NAME }} >> .env
+                echo DJANGO_ALLOWED_HOSTS=${{ secrets.STAGE_DJANGO_ALLOWED_HOSTS }} >> .env
+                echo DB_ENGINE=${{ secrets.STAGE_DB_ENGINE }} >> .env
+                echo DB_USER=${{ secrets.STAGE_DB_USER }} >> .env
+                echo DB_PASSWORD=${{ secrets.STAGE_DB_PASSWORD }} >> .env
+                echo DB_HOST=${{ secrets.STAGE_DB_HOST }} >> .env
+                echo DB_NAME=${{ secrets.STAGE_DB_NAME }} >> .env
+                echo DB_PORT=${{ secrets.STAGE_DB_PORT }} >> .env
+                echo DOCKER_CONTAINER_EMAIL=${{ secrets.STAGE_DOCKER_CONTAINER_EMAIL }} >> .env
+                echo DOCKER_CONTAINER_PASSWORD=${{ secrets.STAGE_DOCKER_CONTAINER_PASSWORD }} >> .env
+                echo AWS_ACCESS_KEY_ID=${{ secrets.STAGE_AWS_ACCESS_KEY_ID }} >> .env
+                echo AWS_SECRET_ACCESS_KEY=${{ secrets.STAGE_AWS_SECRET_ACCESS_KEY }} >> .env
+                echo AWS_STORAGE_BUCKET_NAME=${{ secrets.STAGE_AWS_STORAGE_BUCKET_NAME }} >> .env
+                echo AWS_S3_ENDPOINT_URL=${{ secrets.STAGE_AWS_S3_ENDPOINT_URL }} >> .env
+                echo AWS_LOCATION=${{ secrets.STAGE_AWS_LOCATION }} >> .env
+                echo AWS_MEDIA_LOCATION=${{ secrets.STAGE_AWS_MEDIA_LOCATION }} >> .env
+                echo RECAPTCHA_PUBLIC_KEY=${{ secrets.STAGE_RECAPTCHA_PUBLIC_KEY }} >> .env
+                echo RECAPTCHA_PRIVATE_KEY=${{ secrets.STAGE_RECAPTCHA_PRIVATE_KEY }} >> .env
+                echo STRIPE_PUBLISHABLE=${{ secrets.STAGE_STRIPE_PUBLISHABLE }} >> .env
+                echo STRIPE_SECRET=${{ secrets.STAGE_STRIPE_SECRET }} >> .env
+                echo COOKIE_BOT=${{ secrets.STAGE_COOKIE_BOT }} >> .env
+                echo REDIS_PASSWORD=${{ secrets.STAGE_REDIS_PASSWORD }} >> .env
+                echo SENTRY_DNS=${{ secrets.STAGE_SENTRY_DNS }} >> .env
+
+                echo REDIS_IMAGE=${{ env.STAGE_REDIS_IMAGE }} >> .env
+                echo NGINX_IMAGE=${{ env.STAGE_NGINX_IMAGE }} >> .env
+                echo APP_IMAGE=${{ env.STAGE_APP_IMAGE }} >> .env
+                echo CELERY_IMAGE=${{ env.STAGE_CELERY_IMAGE }} >> .env
+                echo BEAT_IMAGE=${{ env.STAGE_BEAT_IMAGE }} >> .env
+                echo DB_IMAGE=${{ env.STAGE_DB_IMAGE }} >> .env
+                echo STRIPE_IMAGE=${{ env.STAGE_STRIPE_IMAGE }} >> .env
+
+                
+          - name: Add the private SSH key to the ssh-agent
+            env:
+              SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+            run: |
+                mkdir -p ~/.ssh
+                ssh-agent -a $SSH_AUTH_SOCK > /dev/null
+                ssh-keyscan github.com >> ~/.ssh/known_hosts
+                ssh-add - <<< "${{ secrets.STAGE_PRIVATE_KEY }}"
+          - name: Build and deploy images on DigitalOcean
+            env:
+                SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+            run: |
+                scp  -o StrictHostKeyChecking=no -r ./.env ./app/backend ./app/nginx ./docker-compose.stage.yml ./pg_init_stage.sql root@${{ secrets.STAGE_IP_ADDRESS }}:/home/course
+                ssh -o StrictHostKeyChecking=no root@${{ secrets.STAGE_IP_ADDRESS }} << 'ENDSSH'
+                    cd /home/course
+                    mv docker-compose.stage.yml docker-compose.yml
+                    cd backend
+                    mv manage.stage.py manage.py
+                    rm manage.prod.py
+                    cd course
+                    mv celery.stage.py celery.py
+                    mv wsgi.stage.py wsgi.py
+                    rm wsgi.prod.py
+                    rm celery.prod.py
+                    cd ../..
+                    source .env
+                    echo "${{secrets.STAGE_CERT_PEM}}" > /etc/ssl/certs/cert.pem
+                    echo "${{secrets.STAGE_CERT_KEY}}" > /etc/ssl/certs/key.pem
+                    echo ${{secrets.PERSONAL_ACCESS_TOKEN}} | docker login ghcr.io -u ${{ secrets.NAMESPACE }} --password-stdin
+                    docker pull $REDIS_IMAGE
+                    docker pull $NGINX_IMAGE
+                    docker pull $APP_IMAGE
+                    docker pull $CELERY_IMAGE
+                    docker pull $BEAT_IMAGE
+                    docker pull $DB_IMAGE
+                    docker-compose up -d --build
+                ENDSSH
+
+    production:
+        name: Deploy to DigitalOcean Production
+        runs-on: ubuntu-latest
+        needs: build-production
+
+        if: github.ref == 'refs/heads/prod'
+        steps:
+          - name: Checkout main
+            uses: actions/checkout@v1
+          - name: Add environment variables to .env
+            run: |
+                echo CELERY_BROKER=${{ secrets.CELERY_BROKER }} >> .env
+                echo CELERY_BACKEND=${{ secrets.CELERY_BACKEND }} >> .env
+                echo NAMESPACE=${{ secrets.NAMESPACE }} >> .env
+                echo SECRET_KEY=${{ secrets.PROD_SECRET_KEY }} >> .env
+                echo SUPPORT_EMAIL=${{ secrets.PROD_SUPPORT_EMAIL }} >> .env
+                echo DONOT_REPLY_EMAIL=${{ secrets.PROD_EMAIL_ADDRESS }} >> .env
+                echo EMAIL_PASSWORD=${{ secrets.PROD_EMAIL_PASSWORD }} >> .env
+                echo EMAIL_HOST=${{ secrets.PROD_EMAIL_HOST }} >> .env
+                echo EMAIL_PORT=${{ secrets.PROD_EMAIL_PORT }} >> .env
+                echo EMAIL_USE_TLS=${{ secrets.PROD_EMAIL_USE_TLS }} >> .env
+                echo EMAIL_DISPLAY_NAME=${{ secrets.PROD_EMAIL_DISPLAY_NAME }} >> .env
+                echo DJANGO_ALLOWED_HOSTS=${{ secrets.PROD_DJANGO_ALLOWED_HOSTS }} >> .env
+                echo DB_ENGINE=${{ secrets.PROD_DB_ENGINE }} >> .env
+                echo DB_USER=${{ secrets.PROD_DB_USER }} >> .env
+                echo DB_PASSWORD=${{ secrets.PROD_DB_PASSWORD }} >> .env
+                echo DB_HOST=${{ secrets.PROD_DB_HOST }} >> .env
+                echo DB_NAME=${{ secrets.PROD_DB_NAME }} >> .env
+                echo DB_PORT=${{ secrets.PROD_DB_PORT }} >> .env
+                echo DOCKER_CONTAINER_EMAIL=${{ secrets.PROD_DOCKER_CONTAINER_EMAIL }} >> .env
+                echo DOCKER_CONTAINER_PASSWORD=${{ secrets.PROD_DOCKER_CONTAINER_PASSWORD }} >> .env
+                echo AWS_ACCESS_KEY_ID=${{ secrets.PROD_AWS_ACCESS_KEY_ID }} >> .env
+                echo AWS_SECRET_ACCESS_KEY=${{ secrets.PROD_AWS_SECRET_ACCESS_KEY }} >> .env
+                echo AWS_STORAGE_BUCKET_NAME=${{ secrets.PROD_AWS_STORAGE_BUCKET_NAME }} >> .env
+                echo AWS_S3_ENDPOINT_URL=${{ secrets.PROD_AWS_S3_ENDPOINT_URL }} >> .env
+                echo AWS_LOCATION=${{ secrets.PROD_AWS_LOCATION }} >> .env
+                echo AWS_MEDIA_LOCATION=${{ secrets.PROD_AWS_MEDIA_LOCATION }} >> .env
+                echo RECAPTCHA_PUBLIC_KEY=${{ secrets.PROD_RECAPTCHA_PUBLIC_KEY }} >> .env
+                echo RECAPTCHA_PRIVATE_KEY=${{ secrets.PROD_RECAPTCHA_PRIVATE_KEY }} >> .env
+                echo STRIPE_PUBLISHABLE=${{ secrets.PROD_STRIPE_PUBLISHABLE }} >> .env
+                echo STRIPE_SECRET=${{ secrets.PROD_STRIPE_SECRET }} >> .env
+                echo COOKIE_BOT=${{ secrets.PROD_COOKIE_BOT }} >> .env
+                echo REDIS_PASSWORD=${{ secrets.PROD_REDIS_PASSWORD }} >> .env
+                echo SENTRY_DNS=${{ secrets.PROD_SENTRY_DNS }} >> .env
+                echo STRIPE_WEBHOOK_KEY=${{ secrets.PROD_STRIPE_WEBHOOK_KEY }} >> .env
+                echo STRIPE_WEBHOOK_SECRET=${{ secrets.PROD_WEBHOOK_SECRET }} >> .env
+
+                echo REDIS_IMAGE=${{ env.PROD_REDIS_IMAGE }} >> .env
+                echo NGINX_IMAGE=${{ env.PROD_NGINX_IMAGE }} >> .env
+                echo APP_IMAGE=${{ env.PROD_APP_IMAGE }} >> .env
+                echo CELERY_IMAGE=${{ env.PROD_CELERY_IMAGE }} >> .env
+                echo BEAT_IMAGE=${{ env.PROD_BEAT_IMAGE }} >> .env
+                echo DB_IMAGE=${{ env.PROD_DB_IMAGE }} >> .env
+                echo STRIPE_IMAGE=${{ env.PROD_STRIPE_IMAGE }} >> .env
+
+          - name: Add the private SSH key to the ssh-agent
+            env:
+              SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+            run: |
+                mkdir -p ~/.ssh
+                ssh-agent -a $SSH_AUTH_SOCK > /dev/null
+                ssh-keyscan github.com >> ~/.ssh/known_hosts
+                ssh-add - <<< "${{ secrets.PROD_PRIVATE_KEY }}"
+          - name: Build and deploy images on DigitalOcean
+            env:
+                SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+            run: |
+                scp  -o StrictHostKeyChecking=no -r ./.env ./app/backend ./app/nginx ./docker-compose.prod.yml ./pg_init_prod.sql root@${{ secrets.PROD_IP_ADDRESS }}:/home/course
+                ssh -o StrictHostKeyChecking=no root@${{ secrets.PROD_IP_ADDRESS }} << 'ENDSSH'
+                    cd /home/course
+                    mv docker-compose.prod.yml docker-compose.yml
+                    cd backend
+                    mv manage.prod.py manage.py
+                    rm manage.stage.py
+                    cd course
+                    mv celery.prod.py celery.py
+                    rm celery.stage.py
+                    mv wsgi.prod.py wsgi.py
+                    rm wsgi.stage.py
+                    cd ../..
+                    source .env
+                    echo "${{secrets.PROD_CERT_PEM}}" > /etc/ssl/certs/cert.pem
+                    echo "${{secrets.PROD_CERT_KEY}}" > /etc/ssl/certs/key.pem
+                    echo ${{secrets.PERSONAL_ACCESS_TOKEN}} | docker login ghcr.io -u ${{ secrets.NAMESPACE }} --password-stdin
+                    docker pull $REDIS_IMAGE
+                    docker pull $NGINX_IMAGE
+                    docker pull $APP_IMAGE
+                    docker pull $CELERY_IMAGE
+                    docker pull $BEAT_IMAGE
+                    docker pull $DB_IMAGE
+                    docker-compose up -d --build
+                ENDSSH

@@ -1,30 +1,42 @@
 # <span style="color:orange">Lecture overview</span>
 
-In this advanced section of our course, we'll focus on building robust CI/CD (Continuous Integration/Continuous Deployment) pipelines using Docker-Compose for staging and production environments. Additionally, we'll replace Flower with Nginx as the proxy server to efficiently manage incoming traffic. This CI/CD setup will enable automated testing, seamless deployment, and improved scalability for your Django application. Furthermore, we'll integrate these Docker-Compose files into GitHub Actions to automate the CI/CD process and ensure smooth and reliable application delivery.
+In this transformative section of our course, we'll explore the power of GitHub Actions by learning how to create a main.yml file to facilitate Continuous Integration and Continuous Deployment (CI/CD) package creation. GitHub Actions offers a robust and customizable automation platform, allowing us to streamline the build and deployment processes efficiently. We'll focus on creating workflows to build packages for various stages of CI/CD, enabling us to deliver reliable and consistent application releases.
 
-Introduction to Docker-Compose CI/CD: 
+Introduction to GitHub Actions: 
 
-We'll start by understanding the benefits of utilizing Docker-Compose for CI/CD pipelines. You'll learn how Docker-Compose streamlines the deployment process, simplifies environment configuration, and ensures consistency across different environments.
+We'll begin by understanding the concept of GitHub Actions and how it fits into the CI/CD ecosystem. You'll learn about the benefits of automating workflows, including faster development cycles and improved collaboration.
 
-Building the Staging Docker-Compose File: 
+Creating a main.yml File: 
 
-We'll create a Docker-Compose file specifically tailored for the staging environment. This will include setting up containers for the Django app, PostgreSQL database, Redis caching, and Nginx as the proxy server to efficiently handle incoming requests.
+We'll guide you through the process of creating a main.yml file in your GitHub repository. This file will serve as the entry point for defining your CI/CD workflows and automation tasks.
 
-Implementing Production Docker-Compose File: 
+Setting Up CI/CD Environments: 
 
-We'll create a separate Docker-Compose file for the production environment. This file will focus on fine-tuning the application's configuration for optimal performance, security, and scalability. Nginx will continue to serve as the proxy server for handling incoming traffic.
+You'll learn how to configure different CI/CD environments, such as development, staging, and production, within the main.yml file. Each environment will have its specific requirements and steps for package creation.
 
-Configuring Nginx for Load Balancing: 
+Building and Testing Packages: 
 
-To ensure high availability and improved performance, we'll explore how to configure Nginx for load balancing across multiple instances of the Django app. You'll learn how to set up multiple containers and use Nginx to distribute incoming traffic efficiently.
+We'll define workflows for building packages, including Docker images, Python packages, or other artifacts specific to your project. You'll also learn how to run automated tests to ensure the reliability of the created packages.
 
-By the end of this section, you'll have successfully implemented Docker-Compose CI/CD files for both staging and production environments, utilizing Nginx as the proxy server for efficient traffic handling. The integration with GitHub Actions will automate the testing and deployment processes, enabling you to deliver a seamless and reliable application experience to your users.
+Continuous Deployment: 
 
-Docker-Compose CI/CD is a fundamental skill for modern web development, allowing you to streamline your development and deployment workflows effectively. Let's dive into the world of CI/CD with Docker-Compose and ensure that your Django application is delivered with confidence and efficiency.
+With packages successfully created and tested, we'll delve into Continuous Deployment workflows. You'll learn how to automate the deployment process to different environments based on specific triggers, such as tags or branches.
+
+Handling Secrets and Environment Variables: 
+
+We'll emphasize the importance of securing sensitive information, such as access tokens or credentials. You'll learn how to use GitHub Secrets and environment variables to protect sensitive data in your CI/CD workflows.
+
+Monitoring and Notifications: 
+
+We'll discuss strategies for monitoring the CI/CD workflows and implementing notifications for build and deployment status. This will enable you to stay informed about the success or failure of each workflow execution.
+
+By the end of this section, you'll have successfully implemented a main.yml file in your GitHub repository, enabling powerful CI/CD package creation workflows. You'll gain a deep understanding of GitHub Actions' capabilities and how to leverage them for automated package building and deployment.
+
+GitHub Actions is a game-changer in modern software development, streamlining workflows and improving productivity. Let's dive into the world of CI/CD automation and unlock the true potential of your applications with GitHub Actions!
 
 # <span style="color:orange">Code changes</span>
 
-You can find all code changes [here](https://github.com/bobby-didcoding/build-and-deploy-dockerised-django-app-handbook/pull/25/files).
+You can find all code changes [here](https://github.com/bobby-didcoding/build-and-deploy-dockerised-django-app-handbook/pull/26/files).
 
 
 ***
