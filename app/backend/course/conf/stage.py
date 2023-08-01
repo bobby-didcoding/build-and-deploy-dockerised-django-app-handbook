@@ -106,7 +106,6 @@ CELERY_ACCEPT_CONTENT = CELERY_ACCEPT_CONTENT
 CELERY_RESULT_SERIALIZER = CELERY_RESULT_SERIALIZER
 CELERY_TASK_SERIALIZER = CELERY_TASK_SERIALIZER
 CELERY_BEAT_SCHEDULER = CELERY_BEAT_SCHEDULER
-
 PRODUCTION = 1
 DEBUG = 1
 CSRF_TRUSTED_ORIGINS = [f'https://{h}' for h in ALLOWED_HOSTS]
@@ -177,4 +176,20 @@ sentry_sdk.init(
 )
 # --------------------------------------------------------------
 # END SENTRY SETTINGS
+# --------------------------------------------------------------
+
+# --------------------------------------------------------------
+# Cache settings
+# --------------------------------------------------------------
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": f'{os.environ.get("CELERY_BROKER")}/0',
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+        },
+    },
+}
+# --------------------------------------------------------------
+# END CACHE SETTINGS
 # --------------------------------------------------------------
